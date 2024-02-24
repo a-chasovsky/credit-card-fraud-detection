@@ -1,0 +1,10 @@
+
+.DS_Store
+.gitattributes
+.ipynb_checkpoints/
+archive/
+data/
+data-transformed/
+sessions/
+README DRAFT.ipynb
+.Rhistory

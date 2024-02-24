@@ -489,7 +489,7 @@
             Модель можно подстраивать с помощью изменения величины порогового коэффициента (<sb>threshold</sb>).  
             Отобразим результаты алгоритма XGBoost в виде матрицы ошибок.
             <space></space>
-            <img src='img/confmatrix_xgb_thresh.png' style='display:block;margin-left: auto;margin-right:auto;padding-right:10px'>
+            <img src='img/confmatrix_xgb_thresh.png' style='display:block;margin-left:-10px;margin-right:auto;'>
             <space></space>
             Всего алгоритм оценил 57 443 транзакции (общее число мошенничеств - 381 (0.66%)).  
             <space></space>
@@ -520,19 +520,19 @@
         <p>
             График показывает изменение точности (Precision) и охвата (Recall) в зависимости от величины порогового коэффициента. Кривая F1-score - это агрегированный показатель, оценивающий совокупную эффективность.
             <space></space>
-            <img src='img/pr_tradeoff_plot.png' style='display:block;margin-left: auto;margin-right:auto;padding-right:10px'>
+            <img src='img/pr_tradeoff_plot.png' style='display:block;margin-left: auto;margin-right:auto;'>
             <space></space>
             Показатели практически неизменны на всём диапазоне пороговых значений выше 0.15.
             <space></space>
             Преобразуем эти метрики для улучшения интерпретации - построим график зависимости <sb>упущенных мошенничеств</sb> от числа <sb>ошибочно предсказанных</sb> мошенничеств.
             <space></space>
-            <img src='img/missedwrong_tradeoff_1.png' style='display:block;margin-left: auto;margin-right:auto;padding-right:10px'>
+            <img src='img/missedwrong_tradeoff_1.png' style='display:block;margin-left: auto;margin-right:auto;'>
             <space></space>
             Здесь проявляется общая логика работы с пороговым коэффициентом - снижение числа упущенных мошенничеств приводит к увеличению количества ошибок в прогнозах (ложно-положительные предсказания). Маневр для подстройки модели имеется в диапазоне от 0 до 150 по оси X (выделено пунктирной линией). В остальных частях графика взаимосвязь практически отсутствует. 
             <space></space>
             Увеличим область, отмеченную пунктиром.
             <space></space>
-            <img src='img/missedwrong_tradeoff_2.png' style='display:block;margin-left: auto;margin-right:auto;padding-right:10px'>
+            <img src='img/missedwrong_tradeoff_2.png' style='display:block;margin-left: auto;margin-right:auto;'>
             <space></space>
             В интервале, отмеченном светло-серой областью, соотношение <i>1 к 2</i>:
             </p>
@@ -601,7 +601,7 @@
                 <li>В топ-100 подозрительных попали 5 карт, которые при этом не были классифицированы как мошеннические (серый цвет, см. график).</li>
                 </ul>
             <space></space>
-            <img src='img/cp_100.png'>
+            <img src='img/cp_100.png' style='margin-left:-5px;'>
         <p>
             Точность алгоритма - 100%. Все карты, которым модель присвоила метку "мошенничество", действительно оказались мошенническими. Это полезная информация для сотрудников, отвечающих за проверку подозрительных транзакций. Карты и транзакции, отмеченные моделью как мошеннические, должны проверяться в первую очередь.
             <space></space>
@@ -651,7 +651,7 @@
             <space></space>
             Для Logistic Regression и Random Forest наиболее эффективен комбинированный подход. XGBoost немного улучшается после присваивания веса каждому классу. LightGBM лучше работает после удаления мажоритарных классов, но тем не менее не достигает лучших показателей остальных моделей.
             <space></space>
-            <img src='img/unbalanced_roc_auc.png'>
+            <img src='img/unbalanced_roc_auc.png' style='margin-left:10px'>
             </p>
             <h4>
                 Average Precision
@@ -659,7 +659,7 @@
         <p>
             Average Precision демонстрирует обратную ситуацию. Улучшились результаты только LightGBM (снова с помощью undersampling), но недостаточно, чтобы конкурировать с XGBoost и Random Forest. Logistic Regression стабильно менее эффективна, чем остальные алгоритмы.  
             <space></space>
-            <img src='img/unbalanced_av_prec.png'>
+            <img src='img/unbalanced_av_prec.png' style='margin-left:10px'>
             <space></space>
             </p>
             <h4>
@@ -668,7 +668,7 @@
         <p>
             Для Card Precision наблюдается похожая картина. Заметное ухудшение производительности всех моделей при комбинированном подходе. Базовый XGBoost остается самым эффективным алгоритмом.  
             <space></space>
-            <img src='img/unbalanced_card_prec.png'>
+            <img src='img/unbalanced_card_prec.png' style='margin-left:10px'>
             <space></space>
             </p>
             <h4>
@@ -679,7 +679,7 @@
             <space></space>
             Дисперсия на примере результатов XGBoost.
             <space></space>
-            <img src='img/unbalanced_xgb.png'>
+            <img src='img/unbalanced_xgb.png' style='margin-left:-5px'>
             <space></space>
             </p>
     <h2>

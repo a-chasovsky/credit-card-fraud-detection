@@ -328,7 +328,7 @@
             <li>Мошеннических транзакций: 17 752 (0.84%);</li>
             <li>Число характеристик транзакций: 9.</li>
             </ul>
-        <img src='img/data.png' style='display:block;margin-left:auto;margin-right:auto;'> 
+        <img src='img/data.png' style='display:block;margin-left:-5px;margin-right:auto;'> 
         <ul>
             <li><sb>transaction_id</sb>: идентификатор транзакции;</li>
             <li><sb>tx_datetime</sb>: дата и время совершения транзакции;</li>
@@ -423,7 +423,7 @@
         <p>
             <i>Примечание: в работе не проводились симуляции с применением ресэмплинга. Оценки и доверительные интервалы рассчитаны по итогам предварительной валидации, состоящей из 4 train-valid-test блоков данных (folds). Этого недостаточно для выводов о статистической значимости. Однако можно сделать предположение, что полученные результаты не изменятся с увеличением числа симуляций - доверительные интервалы будут сужаться без заметного изменения относительной эффективности моделей.</i>
             <space></space>
-            <img src='img/performance_metrics.png' style='display:block;margin-left: auto;margin-right:auto;padding-right:10px'>
+            <img src='img/performance_metrics.png' style='display:block;margin-left: auto;margin-right:auto;'>
             <space></space>
             Логистическая регрессия эффективно сработала с точки зрения AUC ROC, но уступает ансамблевым алгоритмам по другим метрикам. По совокупности XGBoost выглядит наиболее предпочтительным. 
             <space></space>
@@ -709,18 +709,18 @@
             Оптимальной считается модель с наивысшем значением Average Precision на валидационном датасете.
             
             <h4>
-                Logistic Rgression 678
+                Logistic Rgression
                 </h4>
             
             <img src='img/performance_lr_df.png'>
-            <img src='img/performance_lr.png' style='display:block;margin-left:-30px;margin-right:auto;'>
+            <img src='img/performance_lr.png' style='display:block;margin-left:-15px;margin-right:auto;'>
 
             <h4>
                 Random Forest
                 </h4>
             
             <img src='img/performance_rf_df.png'>
-            <img src='img/performance_rf.png'>
+            <img src='img/performance_rf.png' style='display:block;margin-left:-15px;margin-right:auto;'>
 
             <h4>
                 XGBoost
@@ -728,14 +728,14 @@
         
             
             <img src='img/performance_xgb_df.png'>
-            <img src='img/performance_xgb.png'>
+            <img src='img/performance_xgb.png' style='display:block;margin-left:-15px;margin-right:auto;'>
 
             <h4>
                 LightGBM
                 </h4>
             
             <img src='img/performance_lgb_df.png'>
-            <img src='img/performance_lgb.png'>
+            <img src='img/performance_lgb.png' style='display:block;margin-left:-15px;margin-right:auto;'>
             </p>
         </div>
     </div>

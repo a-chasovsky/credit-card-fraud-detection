@@ -3,771 +3,456 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Обнаружение мошеннических операций с кредитными картами</title>
+    <link rel="stylesheet" href="index.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6">
-        </script>
     <script id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
         </script>
 </head>
-<style>
-    /* html {
-        scroll-behavior: smooth;
-    } */
-    body {
-        background-color: #FFFFFF
-    }
-    .main-container {
-        width: 810px;
-        border-right: 1px solid #CFD7DE;
-        border-left: none;
-        padding: 0 30px 0 0;
-    }
-    .sub-container {
-        width: 750px;
-        border-right: none;
-        border-left: 1px solid #CFD7DE;
-        margin-left: 22.5%;
-        padding: 0 0 0 30px;
-    }
-    #toc_container {
-        background: #FFFDFF;
-        width: 720px;
-        border: 1px solid #CFD7DE;
-        display: table;
-        font-size: 95%;
-        margin-bottom: 1em;
-        padding: 5px 20px 20px 20px;
-        margin-top: 0px;
-        border-radius: 5px; 
-    }
-    h1 { 
-        font-family: system-ui;
-        color: #303030;
-        font-size: 1.5em;
-        font-weight: 600;
-        text-align: left;
-        line-height: 1.25;
-    }
-    h2 {
-        font-family: system-ui;
-        color: #252525;
-        font-size: 1.3em;
-        font-weight: 600;
-        text-align: left;
-        line-height: 1.5em;
-    }
-    h3 {
-        font-family: system-ui;
-        color: #252525;
-        font-size: 1.15em;
-        font-weight: 600;
-        text-align: left;
-        line-height: 1.25em;
-    }
-    h4 {
-        font-family: system-ui;
-        color: #252525;
-        font-size: 1em;
-        font-weight: 600;
-        text-align: left;
-        line-height: 1.25;
-        margin-bottom: 0px;
-    }
-    h5 {
-        font-family: system-ui;
-        font-style: italic;
-        color: #252525;
-        font-size:0.85em;
-        font-weight: 400;
-        text-align: left;
-        line-height: 1.25em;
-        margin-top: -5px;
-        margin-bottom: 0px;
-    }
-    p {
-        font-family: system-ui;
-        font-size: 1em;
-        color: #151515;
-        line-height: 1.5;
-        margin: 12.5px 0 0 0;
-        text-align: justify
-    }
-    img-center {
-        display: flex;
-        justify-content: center;
-        padding-right: 0px;
-        padding-left: 0px
-    }
-    img-margin {
-        margin-left: 30px;
-    }
-
-    .toc_title {
-        font-weight: 600;
-        text-align: left;
-        font-family: system-ui;
-        color: #252525;
-        padding: 10px 0 10px 0;
-    }
-    text-number-toc {
-        font-family: system-ui;
-        font-weight:600;
-        color: #333333;
-        font-size: 0.85em;
-        text-align: justify;
-        line-height: 1.5;
-    }   
-    a {
-        scroll-margin-top: 15px;
-    }
-    a:link {
-        font-family: system-ui;
-        text-decoration: none;
-        color: #164B84;
-    }
-    a:visited {
-        font-family: system-ui;
-        color: #164B84;
-    }
-    a:hover {
-        font-family: system-ui;
-        color: #2373C7;
-        text-decoration: none;
-    }
-    a:active {
-        font-family: system-ui;
-        color: #2D8CF1;
-    }
-    sb {
-        font-weight: 600;
-        font-color: red;
-    }
-    line-height-1-75 {
-        line-height: 1.75em;
-    }
-    space {
-        display: block;
-        margin-top: 12.5px;
-        content: ' '
-    }
-    space20 {
-        display: block;
-        margin-top: 20px;
-        content: ' '
-    }
-    space25 {
-        display: block;
-        margin-top: 25px;
-        content: ' '
-    }
-    ul {
-        list-style-type: disc;
-        line-height: 1.5;
-        margin-top: 5px;
-        color: #151515;
-    }
-    li {
-        font-family: system-ui;
-        line-height: 1.75em;
-        text-align: justify
-    }
-    #toTocBtn {
-      display: none;
-      position: fixed;
-      margin-left: 880px;
-      bottom: 35px;
-      z-index: 99;
-      border: none; 
-      outline: none; 
-      background-color: #F1F1F1;
-      color: #1B60AA; 
-      cursor: pointer; 
-      padding: 15px; 
-      border-radius: 5px;
-      font-size: 14px;
-    }
-    #toTocBtn:hover {
-      background-color: #E1E1E1;
-      border: none; 
-      color: #1B60AA;
-    }
-    .sub-container span a:link {
-        font-family: system-ui;
-        color: #164B84;
-        font-size: 0.85em;
-        margin-left: 2.5px;
-        text-decoration: none;
-    }
-    .sub-container span a:visited {
-        font-family: system-ui;
-        color: #164B84;
-        font-size: 0.85em;
-        margin-left: 2.5px;
-        text-decoration: none;
-    }
-    .sub-container span a:hover {
-        font-family: system-ui;
-        color: #2373C7;
-        font-size: 0.85em;
-        margin-left: 2.5px;
-        text-decoration: none;
-    }
-    .sub-container span a:active {
-        font-family: system-ui;
-        color: #2D8CF1;
-        font-size: 0.85em;
-        margin-left: 2.5px;
-        text-decoration: none;
-    }
-    span.emoji {
-      font-size: 20px;
-    }
-    pageend {
-        display: block;
-        margin-top: 75px;
-        content: ' '
-    }
-    .change-size {
-        transform: scale(1.5);
-        border: 1px solid #CCCCCC;
-        border-radius: 3px;
-    }
-</style>
 <body>
-<div class='sub-container' style='border-left:none'>
-    <img src='img/header.png'
-        style='margin-top:1.5em;width:760px;border-radius:0.3em 0.3em 0.3em 0.3em'>
-    <h1>
-        Обнаружение мошеннических операций с кредитными картами
-        </h1>
-    <h5>
+<div id="content">
+    <div class="desktop" style='margin-bottom:10em;'>
+<page-container>
+<main-container>
+<sub-container
+    id='general' 
+    style='text-align:right;scroll-margin-top:1em;'>
+<content-container>
+    <img 
+        src='img/header.png'
+        style='width:100%;border-radius:0.3em 0.3em 0.3em 0.3em'>
+</content-container>
+</sub-container>
+</main-container>
+<main-container>
+<sub-container>
+<sub-container style='border-right: 1px solid #CFD7DE;'>
+<content-container style='text-align:right;'>
+    <h1 id='title' style='text-align:right;'>
+       Обнаружение мошеннических операций с кредитными картами
+    </h1>
+    <h5 style='text-align:right;margin-top:-0.5em;'>
        Машинное обучение, классификация
-        </h5>
-    <span style='padding-left:17px;margin-top:15px;margin-bottom:15px;display:inline-block;scroll-margin-top:15px;' id='links'>
+    </h5>
+    <span
+        style='display:inline-block;margin-top:0.8em;'>
         <a href='https://github.com/a-chasovsky/credit-card-fraud-detection' target='_blank'>
-            <span>
-                <img src='img/credit-card.png' style='width:20px;vertical-align:top'>
+            <span style='display:inline-block;'>
+                <!-- &#127969; -->
+                <img
+                    src='img/credit-card.png'
+                    style='width:1.17em;vertical-align:-0.3em;'>
                 </span>
-            <span style='margin-left:4px;'>
+            <span style='margin-left:0.3em;font-size:0.85em'>
                 Ссылка на репозиторий
                 </span>
             </a>
             &emsp;
         </span>
-    <span style='margin-top:15px;margin-bottom:15px;display:inline-block;scroll-margin-top:15px;'>
+    <span 
+        style='display:inline-block;margin-top:0.8em;'>
         <a href='https://github.com/a-chasovsky' target='_blank'>
-            <span>
-                <img src='img/github-logo.png' style='width:20px;vertical-align:top'>
+            <span style='display:inline-block;'>
+                <img src='img/logo-github.png'
+                     style='width:1.3em;vertical-align:-0.33em;'>
                 </span>
-            <span style='margin-left:4px;'>
+            <span style='margin-left:0.5em;font-size:0.85em'>
                 Профиль Github 
                 </span>
             </a>
         </span>
+</content-container>
+<content-container>
+    <h2 id='review'>
+        Обзор проекта
+        </h2>
+</content-container>
+<sub-container style='border-left: 1px solid #CFD7DE;'>
+<content-container>
+    В проекте оценивается эффективность работы алгоритмов машинного обучения, предназначенных для выявления и прогнозирования мошенничества с банковскими картами. 
+    <space></space>
+    Модели строятся с учетом особенностей работы с банковскими транзакциями и временными рядами:
+    <ul>
+        <li>вводится <sb>задержка</sb> между периодами обучения, валидации и оценки моделей;</li>
+        <li>используется предварительная валидация (<sb>prequential validation</sb>) со скользящим окном.</li>
+        </ul>
+    Для повышения эффективности прогнозирования рассчитываются дополнительные предикторы, учитывающие время суток, рабочие/нерабочие дни, сегментацию клиентов согласно <sb>RFM (Recency, Frequency, Monetary)</sb>.
+    <space></space>
+    Эффективность оценивается с точки зрения способности моделей выявлять как <sb>подозрительные транзакции</sb>, так и <sb>банковские карты</sb>, используемые мошенниками. 
+    <space></space>
+    Для оценки используются метрики AUC ROC, Average Precision, <sb>Card Precision</sb>, строятся кривые ROC и Precision-Recall, оценивается влияние величины порогового коэффициента на прогнозы, выдаваемые ML-алгоритмами.
+    <space></space>
+    Дополнительно оценивается целесообразность применения техник для преобразования несбалансированных датасетов:
+    <ul>
+        <li>удаление мажоритарных классов (undersampling);</li>
+        <li>комбинированный подход (undersampling + oversampling);</li>
+        <li>использование весов классов (weighted models).</li>
+        </ul>
+    <h2 id='dataset_description'>
+        Описание датасета
+    </h2>
+    Данные сгенерированы по методике, описанной в совместной работе исследователей из университетов Брюсселя и Люксембурга, а также команды машинного обучения компании Worldline Labs. Датасет состоит из последовательности банковских транзакций:
+    <ul>
+        <li>Всего транзакций: 2 107 260;</li>
+        <li>Мошеннических транзакций: 17 752 (0.84%);</li>
+        <li>Число характеристик транзакций: 9.</li>
+        </ul>
+    <img
+        src='img/data.png'
+        style='display:block;margin-left:-15px;margin-right:auto;border: 1px solid #CCCCCC;border-radius: 3px;'> 
+    <space></space>
+    <ul>
+        <li><sb>transaction_id</sb>: идентификатор транзакции;</li>
+        <li><sb>tx_datetime</sb>: дата и время совершения транзакции;</li>
+        <li><sb>customer_id</sb>: идентификатор карты;</li>
+        <li><sb>terminal_id</sb>: идентификатор терминала;</li>
+        <li><sb>tx_amount</sb>: сумма транзакции;</li>
+        <li><sb>tx_time_seconds</sb>: время в секундах, начиная с 0:00 часов суток совершения первой транзакции;</li>
+        <li><sb>tx_time_days</sb>: число дней с момента первой транзакции;</li>
+        <li><sb>tx_fraud</sb>: метка мошенничества (1 - мошенническая транзакция, 0 - подлинная транзакция);</li>
+        <li><sb>tx_fraud_scenario</sb>: тип мошенничества (для построения моделей мультиклассовой классификации).</li>
+        </ul>
+    <h2 id='feature_engineering'>
+        Создание дополнительных предикторов (Feature Engineering)
+    </h2>
+    Дополнительно сгенерированы признаки, учитывающие:
+    <ul>
+        <li>время совершения транзакции (день/ночь);</li>
+        <li>день совершения транзакции (рабочий/нерабочий);</li>
+        <li>скользящее среднее числа транзакций по каждой карте (размер окна: 1,7,30 дней);</li>
+        <li>скользящее среднее суммы транзакций по каждой карте (размер окна: 1,7,30 дней);</li>
+        <li>скользящее среднее числа транзакций по каждому терминалу (размер окна: 1,7,30 дней);</li>
+        <li>скользящее среднее числа мошеннических операций по каждому терминалу (размер окна: 1,7,30 дней).</li>
+        </ul>
+        Итоговый датасет содержит 15 предикторов и 1 целевую переменную - метку мошенничества.
+    <h2 id='ml_lgorithms'>
+        Используемые ML-алгоритмы
+    </h2>
+    <ul>
+        <li><i>Logistic Regression (linear):</i> самый простой и легко интерпретируемый алгоритм;</li>
+        <li><i>Random Forest (bagging):</i> сложнее для интерпретации, чем регрессия, но прогнозы точнее;</li>
+        <li><i>XGBoost (boosting):</i> самый эффективный с точки зрения прогнозов, но сложен для интерпретации и в подборе гиперпараметров;</li>
+        <li><i>LightGBM (boosting):</i> работает быстрее, чем XGBoost, но эффективность ниже.</li>
+        </ul>
+    <h2 id='cross_val_specifics'>
+        Особенности работы с последовательностью транзакций и временными рядами
+    </h2>
+    Время, необходимое для проверки подозрительных транзакций, учитывается в виде дополнительного параметра модели (<sb>задержка</sb>). Задержка принимается равной одной неделе.
+    <space></space>
+    Банковские карты, определенные в период обучения и период задержки как мошеннические, <sb>удаляются</sb> из тестового датасета.
+    <space></space>
+    Для валидации моделей используется предварительная валидация (<sb>prequential validation</sb>) со скользящим окном. Периоды обучающего, валидационного и тестового набора данных, а также задержки, одинаковы и принимаются равными одной неделе.
+    <space></space>
+    <img src='img/prequential_validation.png' style='width:550px;display:block;margin-left:auto;margin-right:auto'>
+    <h2 id='metrics'>
+        Метрики для оценки эффективности моделей
+    </h2>
+    <ul>   
+        <li><sb>AUC ROC</sb> (площадь под кривой ROC) - классическая метрика оценки эффективности работы алгоритмов машинного обучения.
+          Хорошо изучена и часто применяется в разных сегментах противодействия мошенничеству.</li>
+        <li><sb>Card Precision Top-k</sb> - не так широко представлена, как AUC ROC, но обладает большим потенциалом.  
+          Учитывает специфику работы с транзакциями в системе выявления и верификации мошеннических операций финансовых организаций.</li>
+        <li><sb>Average Precision</sb> (площадь под кривой Precision-Recall) - так же хорошо известная метрика.  
+          Здесь используется как бенчмарк для выбора оптимальной модели - компромисс между AUC ROC и Card Precision.</li>
+        </ul>
+    <h2 id='models_base'>
+        Результаты базовых моделей
+    </h2>
+    Модели и гиперпараметры, наиболее эффективные с точки зрения Average Precision:
+    <ul>
+        <li>Logictic Regression (penalty=l2, C=1, solver='saga', max_iter=5000);</li>
+        <li>Random Forest (n_estimators=150, max_depth=25);</li>
+        <li>XGBoost (n_estimators=150, max_depth=3, learning_rate=0.1);</li>
+        <li>LightGBM (n_estimators=150, max_depth=3, learning_rate=0.1).</li>
+        </ul>
+    <i>Примечание: Доверительные интервалы рассчитаны по итогам предварительной валидации, состоящей из 4 train-valid-test блоков данных (folds). Этого недостаточно для выводов о статистической значимости. Однако, можно сделать предположение, что полученные результаты не изменятся с увеличением числа симуляций - доверительные интервалы будут сужаться без заметного изменения относительной эффективности моделей.</i>
+    <space></space>
+    <img src='img/performance_metrics.png' style='display:block;margin-left:-5px;margin-right:auto;'>
+    <space></space>
+    Логистическая регрессия эффективно сработала с точки зрения AUC ROC, но уступает ансамблевым алгоритмам по другим метрикам. По совокупности XGBoost выглядит наиболее предпочтительным. 
+    <space></space>
+    В пункте 8 описаны метрики, оценивающие модель в контексте количества выявленных мошеннических <sb>транзакций</sb>. В пункте 9 исследуется метрика, ориентированная на охват как можно бóльшего числа <sb>банковских карт</sb> используемых мошенниками.
+    <h2 id='metrics_transactions'>
+        Метрики, ориентированные на транзакции
+    </h2>
+    В пунктах 8.1. и 8.2. оценим модели в терминах машинного обучения. Далее в пункте 8.3. посмотрим, как эти метрики связаны с эффективностью обнаружения мошеннических операций. 
+    <h3 id='auc_roc'>
+        AUC ROC
+    </h3>
+    Построим ROC-кривую для оценки эффективности алгоритмов (используются суточные данные).
+    <space></space>
+    <img src='img/roc_curve.png'>
+    <space></space>
+    Logistic Regression и Random Forest работают чуть лучше. Если оценивать исключительно по AUC ROC, то эти алгоритмы - предпочтительный выбор. Начиная со значения False Positive Rate, равного примерно 0.3, заметен провал XGBoost по эффективности.
+    <space></space>
+    Площадь под кривой ROC (AUC) - одна из наиболее популярных метрик для оценки моделей машинного обучения. В то же время она плохо подходит для оценки моделей, созданных для выявления мошеннических операций с банковскими картами.
+    <space></space>
+    Дело в том, что по определению метрика AUC ROC агрегирует производительность модели для всей площади под кривой ROC. Но модели по выявлению мошенничества обычно работают в диапазоне False Positive Rate не выше 0.001. При бóльшем уровне False Positive Rate, модель будет фиксировать ложные мошенничества настолько часто, что для их ручной проверки потребуется слишком много времени. Таким образом, актуальной является крайне небольшая часть графика для значения False Positive Rate меньше 0.001.
+    <space></space>
+    Более гибкой и полезной метрикой в этом смысле является Precision-Recall.
+    <h3 id='precision_recall'>
+        Precision-Recall
+    </h3>
+    Построим кривую Precision-Recall. Оптимальные соотношения Precision и Recall здесь рассчитаны через среднее гармоническое (F1-мера).
+    <space></space>
+    <img src='img/pr_curve.png'>
+    <space></space>
+    Logistic Regression и LightGBM работают чуть хуже. Random Forest и XGBoost показывают одинаковые результаты в оптимальной точке. Кривая XGBoost выглядит интереснее, покрывает бóльшую площадь, а значит более эффективна и лучше настраивается с помощью подбора порогового значения. 
+    <space></space>
+    На примере XGBoost изучим воздействие значения порогового коэффициента на число выявляемых мошеннических транзакций.
+    <h3 id='precision_recall_tradeoff'>
+        Precision-Recall Trade-off
+    </h3>
+    Модель можно подстраивать с помощью изменения величины порогового коэффициента (<sb>threshold</sb>).  
+    Отобразим результаты алгоритма XGBoost в виде матрицы ошибок.
+    <space></space>
+    <img src='img/confmatrix_xgb_thresh.png' style='display:block;margin-left:auto;margin-right:auto;'>
+    <space></space>
+    Всего алгоритм оценил 57 443 транзакции (общее число мошенничеств - 381 (0.66%)).  
+    <space></space>
+    Правильно классифицированы:
+<ul>
+    <li>57 053 транзакции как легальные;</li>
+    <li>227 транзакции как мошеннические.</li>
+    </ul>
+    Допущенные ошибки:
+    <ul>
+        <li>9 легальных транзакций классифицировано как мошеннические;</li>
+        <li>154 мошенническим транзакциям присвоен статус легальных.</li>
+        </ul>
+    Алгоритм <sb>очень точно</sb> классифицирует транзакции. Если транзакции присвоена метка "мошенничество", то в 96% ручная обработка транзакции это подтверждает.
+    <space></space>
+    Соотношение точности (<sb>Precision</sb>, 96%) и охвата (<sb>Recall</sb>, 60%) можно варьировать, изменяя пороговое значение оценок алгоритма. Увеличение охвата модели (то есть способность замечать больше мошеннических транзакций) приводит к уменьшению точности.
+    <space></space>
+    Чтобы настроить модель под бизнес-задачи, необходимо оценить:
+    <ul>
+        <li>финансовые потери в среднем от одной упущенной (незамеченной) транзакции;</li>
+        <li>затраты на проверку одной подозрительной транзакции.</li>
+        </ul>
+    График показывает изменение точности (Precision) и охвата (Recall) в зависимости от величины порогового коэффициента. Кривая F1-score - это агрегированный показатель, оценивающий совокупную эффективность.
+    <space></space>
+    <img src='img/pr_tradeoff_plot.png' style='display:block;margin-left: auto;margin-right:auto;'>
+    <space></space>
+    Показатели практически неизменны на всём диапазоне пороговых значений выше 0.15.
+    <space></space>
+    Преобразуем эти метрики для улучшения интерпретации - построим график зависимости <sb>упущенных мошенничеств</sb> от числа <sb>ошибочно предсказанных</sb> мошенничеств.
+    <space></space>
+    <img src='img/missedwrong_tradeoff_1.png' style='display:block;margin-left: auto;margin-right:auto;'>
+    <space></space>
+    Здесь проявляется общая логика работы с пороговым коэффициентом - снижение числа упущенных мошенничеств приводит к увеличению количества ошибок в прогнозах (ложно-положительные предсказания). Маневр для подстройки модели имеется в диапазоне от 0 до 150 по оси X (выделено пунктирной линией). В остальных частях графика взаимосвязь практически отсутствует. 
+    <space></space>
+    Увеличим область, отмеченную пунктиром.
+    <space></space>
+    <img src='img/missedwrong_tradeoff_2.png' style='display:block;margin-left: auto;margin-right:auto;'>
+    <space></space>
+    В интервале, отмеченном светло-серой областью, соотношение <i>1 к 2</i>:
+    <ul>
+        <li>уменьшение количества пропущенных мошенничеств на 1 транзакцию (ось Y);</li>
+        <li>приведет к увеличению ложных срабатываний на 2 транзакции (ось X).</li>
+        </ul>
+    В интервале, отмеченном темно-серой областью, соотношение <i>1 к 4</i>:
+    <ul>
+        <li>уменьшение количества пропущенных мошенничеств на 1 транзакцию (ось Y);</li>
+        <li>приведет к увеличению ложных срабатываний на 4 транзакции (ось X).</li>
+        </ul>
+    <space></space>
+    <h4>
+        Вывод
+        </h4>
+    <space></space>
+    <ul>
+        <li>Невозможно одновременно увеличивать точность и степень охвата алгоритма;</li>
+        <li>Компромисс между точностью и охватом - это компромисс между <sb>ценой</sb> упущенной мошеннической транзакции и <sb>издержками</sb> на проверку подозрительных транзакций.</li>
+        </ul>
+    В зависимости от величины соответствующих затрат, выбирается оптимальное значение порогового коэффициента. 
+    <h2 id='metrics_cards'>
+        Метрики, ориентированные на банковские карты
+    </h2>
+    <h3 id='card_precision_top_k'>
+        Card Precision top-k
+    </h3>
+    Card Precision - это метрика, которая учитывает оперативные возможности банковских сотрудников, проверяющих подозрительные транзакции. Она показывает долю реальных мошеннических карт из <i>k</i> наиболее подозрительных с точки зрения модели. Параметр <i>k</i> обычно принимается равным количеству карт, которое специалисты способны проверить вручную за сутки.
+    <space></space>
+    Модель, выбранная с помощью данной метрики, фиксирует больше разнородных транзакций. Подобная вариативность приводит к бóльшему охвату по картам. Теоретически, охват бóльшего числа карт мошенников позволяет предотвратить бóльшие потери в будущем.
+    <space></space>
+    Помимо этого, метрика Card Precision top-k интуитивно более понятна специалистам, которые осуществляют проверку подозрительных транзакций.
+    <h4>
+        Пример на суточных данных
+        </h4>
+    Всего транзакций: 8267.<br>
+    Из них мошеннических: 54 (0.65%).  
+    <space></space>
+    Всего карт: 3203 (в среднем 2.5 транзакции на карту).<br>
+    Из них мошеннических: 51 (1.6%).
+    <space></space>
+    Параметр <i>k</i> принимается равным 100.
+    <space></space>
+    Показатели алгоритма XGBoost:
+    <ul>
+        <li>Выявлено 30 мошеннических карт (59% от общего числа мошеннических карт - синий цвет, см. график);</li>
+        <li>65 карт правильно классифицированы как легальные (зеленый цвет, см. график);</li>
+        <li>Не замечена 21 мошенническая карта (41% от общего числа мошеннических карт - красный и серый цвет, см. график);</li>
+        <li>В топ-100 подозрительных попали 5 карт, которые при этом не были классифицированы как мошеннические (серый цвет, см. график).</li>
+        </ul>
+    <space></space>
+    <img src='img/cp_100.png' style='margin-left:-5px;'>
+    Точность алгоритма - 100%. Все карты, которым модель присвоила метку "мошенничество", действительно оказались мошенническими. Это полезная информация для сотрудников, отвечающих за проверку подозрительных транзакций. Карты и транзакции, отмеченные моделью как мошеннические, должны проверяться в первую очередь.
+    <space></space>
+    Метрика CardPrecision@100 равна 30 / 100 = 0.300. Максимальное значение метрики в данном случае - это число истинно мошеннических карт, деленное на <i>k</i>: 51 / 100 = 0.510. Идеальная модель поместила бы 51 карту в топ-100 наиболее подозрительных.
+    <h4>
+        Алгоритм расчета Card Precision top-k
+        </h4>
+    Для расчета метрики используется значение вероятности мошенничества <i>p</i>, которое модель присваивает каждой транзакции.
+    <ul>
+        <li>для каждой карты определяются все транзакции, совершенные по ней за сутки;</li>
+        <li>среди них самая высокая вероятность мошенничества <i>p</i> (наиболее подозрительная транзакция) становится <sb>коэффициентом</sb> этой карты;</li>
+        <li>карты сортируются по убыванию величины коэффициента;</li>
+        <li>выбираются топ <i>k</i> карт с наиболее высоким значением коэффициента;</li>
+        <li>считается доля правильно классифицированных мошеннических карт из числа топ <i>k</i>;</li>
+        </ul>
+    <h4>
+        Вывод
+        </h4>
+    <space></space>
+    Card Precision - эффективная метрика, которая адаптирована под выявление и предупреждение мошеннических операций с кредитными картами (в отличие от классических ML-метрик).
+    <h2 id='unbalanced_techniques'>
+        Техники для преобразования несбалансированных датасетов
+    </h2>
+    Рассмотрены:
+    <ul>
+        <li>удаление мажоритарных классов (undersampling);</li>
+        <li>комбинированный подход (undersampling + oversampling);</li>
+        <li>использование весов классов (weighted models).</li>
+        </ul>
+    <h4>
+        AUC ROC
+        </h4>
+    <space></space>
+    AUC ROC каждой из исследуемых моделей можно улучшить с помощью техник балансировки.  
+    <space></space>
+    Для Logistic Regression и Random Forest наиболее эффективен комбинированный подход. XGBoost немного улучшается после присваивания веса каждому классу. LightGBM лучше работает после удаления мажоритарных классов, но тем не менее не достигает лучших показателей остальных моделей.
+    <space></space>
+    <img src='img/unbalanced_roc_auc.png' style='margin-left:10px'>
+    <h4>
+        Average Precision
+        </h4>
+    Average Precision демонстрирует обратную ситуацию. Улучшились результаты только LightGBM (снова с помощью undersampling), но недостаточно, чтобы конкурировать с XGBoost и Random Forest. Logistic Regression стабильно менее эффективна, чем остальные алгоритмы.  
+    <space></space>
+    <img src='img/unbalanced_av_prec.png' style='margin-left:10px'>
+    <space></space>
+    <h4>
+        Card Precision
+        </h4>
+    Для Card Precision наблюдается похожая картина. Заметное ухудшение производительности всех моделей при комбинированном подходе. Базовый XGBoost остается самым эффективным алгоритмом.  
+    <space></space>
+    <img src='img/unbalanced_card_prec.png' style='margin-left:10px'>
+    <space></space>
+    <h4>
+        Вывод
+        </h4>
+    Можно сказать, что в целом техники работы с несбалансированными датасетами не дают заметного прироста в результатах, а в контексте Average Precision и Card Precision могут заметно уменьшить эффективность лучших моделей. Как было отмечено выше, числа симуляций (N: 4) недостаточно для однозначного вывода.
+    <space></space>
+    Дисперсия на примере результатов XGBoost.
+    <space></space>
+    <img src='img/unbalanced_xgb.png' style='margin-left:-5px'>
+    <space></space>
+    <h2 id='time'>
+        Время работы алгоритмов
+    </h2>
+    При работе с банковскими транзакциями скорость выполнения операций является одним из ключевых факторов. 
+    <space></space>
+    Можно отметить, что несмотря на невысокую скорость подбора гиперпараметров и обучения, XGBoost очень быстро генерирует прогнозы и уступает по этому показателю только самому "легкому" алгоритму - Logistic Regression. 
+    <space></space>
+    <img src='img/score_time.png'>
+    <space></space>
+    LightGBM и Logistic Regression - явно лидируют по скорости обучения и поиска гиперпараметров. 
+    <space></space>
+    <img src='img/fit_hyper_time.png'>
+    <h2 id='appendix'>
+        Приложение. Результаты валидации и тестирования моделей
+    </h2>
+    Модели оцениваются по трем метрикам: AUC ROC, Average Precision, CardPrecision@100.  
+    Оптимальной считается модель с наивысшем значением Average Precision на валидационном датасете.
+    <h4>
+        <i>Logistic Rgression</i>
+        </h4>
+    <img src='img/performance_lr_df.png'>
+    <img src='img/performance_lr.png' style='display:block;margin-left:-15px;margin-right:auto;'>
+    <h4>
+        <i>Random Forest</i>
+        </h4>
+    <img src='img/performance_rf_df.png'>
+    <img src='img/performance_rf.png' style='display:block;margin-left:-15px;margin-right:auto;'>
+    <h4>
+        <i>XGBoost</i>
+        </h4>
+    <img src='img/performance_xgb_df.png'>
+    <img src='img/performance_xgb.png' style='display:block;margin-left:-15px;margin-right:auto;'>
+    <h4>
+        <i>LightGBM</i>
+        </h4>
+    <img src='img/performance_lgb_df.png'>
+    <img src='img/performance_lgb.png' style='display:block;margin-left:-15px;margin-right:auto;'>
+</content-container>
+</sub-container>
+</sub-container>
+</sub-container>
+<!-- Right part -->
+<nav class='toc'>
+<ol>
+    <li style='margin-bottom:0.2em;color:#202020;font-weight:500;font-size:1.1em'>
+        Содержание</li>
+    <li><a onclick="scrollToID('review')" id='#review'>Обзор проекта</a></li>
+    <li><a onclick="scrollToID('dataset_description')" id='#dataset_description'>Описание датасета</a></li>
+    <li><a onclick="scrollToID('feature_engineering')" id='#feature_engineering'>Создание дополнительных предикторов (feature engineering)</a></li>
+    <li><a onclick="scrollToID('ml_lgorithms')" id='#ml_lgorithms'>Используемые ML-алгоритмы</a></li>
+    <li><a onclick="scrollToID('cross_val_specifics')" id='#cross_val_specifics'>Особенности работы с последовательностью транзакций и временными рядами</a></li>
+    <li><a onclick="scrollToID('metrics')" id='#metrics'>Метрики оценки эффективности моделей</a></li>
+    <li><a onclick="scrollToID('models_base')" id='#models_base'>Результаты базовых моделей</a></li>
+    <li><a onclick="scrollToID('metrics_transactions')" id='#metrics_transactions'>Метрики, ориентированные на транзакции</a></li>
+    <ul>
+        <li><a onclick="scrollToID('auc_roc')" id='#auc_roc'>AUC ROC</a></li>
+        <li><a onclick="scrollToID('precision_recall')" id='#precision_recall'>Precision-Recall</a></li>
+        <li><a onclick="scrollToID('precision_recall_tradeoff')" id='#precision_recall_tradeoff'>Precision-Recall Trade-off</a></li>
+        </ul>
+    <li><a onclick="scrollToID('metrics_cards')" id='#metrics_cards'>Метрики, ориентированные на банковские карты</a></li>
+    <ul>
+        <li><a onclick="scrollToID('card_precision_top_k')" id='#card_precision_top_k'>Card Precision top-k</a></li>
+        </ul>
+    <li><a onclick="scrollToID('unbalanced_techniques')" id='#unbalanced_techniques'>Техники для преобразования несбалансированных датасетов</a></li>
+    <li><a onclick="scrollToID('time')" id='#time'>Время работы алгоритмов</a></li>
+    <li><a onclick="scrollToID('appendix')" id='#appendix'>Приложение. Результаты валидации и тестирования моделей</a></li>
+    </ol>
+    <button
+    id="toTocBtn"
+    style='font-size:1.1em;margin:0 0 0 2em;bottom: 2em;'
+    onclick="scrollToID('general')">
+    Наверх
+    </button>
+  </nav>
+</main-container>
+</page-container>
+</div>
+
+<!-- Mobile Version 380px: MobVer 1 -->
+<div class='mobile_device_380px' style='margin-bottom:10em;'>
     </div>
-<div class='sub-container'>
-    <div id="toc_container">
-            <div class='toc_title'>
-                Содержание <a class='anchor' id="#toc"></a>
-                </div>
-             <line-height-1-75>
-                <text-number-toc>1.</text-number-toc> <a href="#review">Обзор проекта</a><br>
-                <text-number-toc>2.</text-number-toc> <a href="#dataset_description">Описание датасета</a><br>
-                <text-number-toc>3.</text-number-toc> <a href="#feature_engineering">Создание дополнительных предикторов (feature engineering)</a><br>
-                <text-number-toc>4.</text-number-toc> <a href="#ml_lgorithms">Используемые ML-алгоритмы</a><br>
-                <text-number-toc>5.</text-number-toc> <a href="#cross_val_specifics">Особенности работы с последовательностью транзакций и временными рядами</a><br>
-                <text-number-toc>6.</text-number-toc> <a href="#metrics">Метрики для оценки эффективности моделей</a><br>
-                <text-number-toc>7.</text-number-toc> <a href="#models_base">Результаты базовых моделей</a><br>
-                <text-number-toc>8.</text-number-toc> <a href="#metrics_transactions">Метрики, ориентированные на транзакции</a><br>
-                &emsp;<text-number-toc>8.1.</text-number-toc> <a href="#auc_roc">AUC ROC</a><br>
-                &emsp;<text-number-toc>8.2.</text-number-toc> <a href="#precision_recall">Precision-Recall</a><br>
-                &emsp;<text-number-toc>8.3.</text-number-toc> <a href="#precision_recall_tradeoff">Precision-Recall Trade-off</a><br>
-                <text-number-toc>9.</text-number-toc> <a href="#metrics_cards">Метрики, ориентированные на банковские карты</a><br>
-                &emsp;<text-number-toc>9.1.</text-number-toc> <a href="#card_precision_top_k">Card Precision top-k</a><br>
-                <text-number-toc>10.</text-number-toc> <a href="#unbalanced_techniques">Техники для преобразования несбалансированных датасетов</a><br>
-                <text-number-toc>11.</text-number-toc> <a href="#time">Время работы алгоритмов</a><br>
-                <text-number-toc>12.</text-number-toc> <a href="#appendix">Приложение. Результаты валидации и тестирования моделей</a><br>
-                </line-height-1-75>
-            </div>
-    <h2>
-        <a
-            class='anchor'
-            id='review'>
-            </a>
-        1. Обзор проекта
-        </h2>
-    <div class='main-container'>
-        <button onclick="scrollToID('links')" id="toTocBtn">
-            К содержанию
-            </button>
-        <p>
-            В проекте оценивается эффективность работы алгоритмов машинного обучения, предназначенных для выявления и прогнозирования мошенничества с банковскими картами. 
-            <space></space>
-            Модели строятся с учетом особенностей работы с банковскими транзакциями и временными рядами:
-            </p>
-            <ul>
-                <li>вводится <sb>задержка</sb> между периодами обучения, валидации и оценки моделей;</li>
-                <li>используется предварительная валидация (<sb>prequential validation</sb>) со скользящим окном.</li>
-                </ul>
-        <p>
-            Для повышения эффективности прогнозирования рассчитываются дополнительные предикторы, учитывающие время суток, рабочие/нерабочие дни, сегментацию клиентов согласно <sb>RFM (Recency, Frequency, Monetary)</sb>.
-            <space></space>
-            Эффективность оценивается с точки зрения способности моделей выявлять как <sb>подозрительные транзакции</sb>, так и <sb>банковские карты</sb>, используемые мошенниками. 
-            <space></space>
-            Для оценки используются метрики AUC ROC, Average Precision, <sb>Card Precision</sb>, строятся кривые ROC и Precision-Recall, оценивается влияние величины порогового коэффициента на прогнозы, выдаваемые ML-алгоритмами.
-            <space></space>
-            Дополнительно оценивается целесообразность применения техник для преобразования несбалансированных датасетов:
-            </p>
-            <ul>
-               <li>удаление мажоритарных классов (undersampling);</li>
-                <li>комбинированный подход (undersampling + oversampling);</li>
-                <li>использование весов классов (weighted models).</li>
-                </ul>
-    <h2>
-        <a
-            class='anchor'
-            id='dataset_description'>
-            </a>
-        2. Описание датасета
-        </h2>
-        <p>
-            Данные сгенерированы по методике, описанной в совместной работе исследователей из университетов Брюсселя и Люксембурга, а также команды машинного обучения компании Worldline Labs. Датасет состоит из последовательности банковских транзакций:
-            </p>
-        <ul>
-            <li>Всего транзакций: 2 107 260;</li>
-            <li>Мошеннических транзакций: 17 752 (0.84%);</li>
-            <li>Число характеристик транзакций: 9.</li>
-            </ul>
-        <img
-            src='img/data.png'
-            style='display:block;margin-left:-15px;margin-right:auto;border: 1px solid #CCCCCC;border-radius: 3px;'> 
-        <space></space>
-        <ul>
-            <li><sb>transaction_id</sb>: идентификатор транзакции;</li>
-            <li><sb>tx_datetime</sb>: дата и время совершения транзакции;</li>
-            <li><sb>customer_id</sb>: идентификатор карты;</li>
-            <li><sb>terminal_id</sb>: идентификатор терминала;</li>
-            <li><sb>tx_amount</sb>: сумма транзакции;</li>
-            <li><sb>tx_time_seconds</sb>: время в секундах, начиная с 0:00 часов суток совершения первой транзакции;</li>
-            <li><sb>tx_time_days</sb>: число дней с момента первой транзакции;</li>
-            <li><sb>tx_fraud</sb>: метка мошенничества (1 - мошенническая транзакция, 0 - подлинная транзакция);</li>
-            <li><sb>tx_fraud_scenario</sb>: тип мошенничества (для построения моделей мультиклассовой классификации).</li>
-            </ul>
-    <h2>
-        <a
-            class='anchor'
-            id='feature_engineering'>
-            </a>
-        3. Создание дополнительных предикторов (Feature Engineering)
-        </h2>
-        <p>
-            Дополнительно сгенерированы признаки, учитывающие:
-            </p>
-        <ul>
-            <li>время совершения транзакции (день/ночь);</li>
-            <li>день совершения транзакции (рабочий/нерабочий);</li>
-            <li>скользящее среднее числа транзакций по каждой карте (размер окна: 1,7,30 дней);</li>
-            <li>скользящее среднее суммы транзакций по каждой карте (размер окна: 1,7,30 дней);</li>
-            <li>скользящее среднее числа транзакций по каждому терминалу (размер окна: 1,7,30 дней);</li>
-            <li>скользящее среднее числа мошеннических операций по каждому терминалу (размер окна: 1,7,30 дней).</li>
-            </ul>
-        <p>
-            Итоговый датасет содержит 15 предикторов и 1 целевую переменную - метку мошенничества.
-            </p>
-    <h2>
-        <a
-            class='anchor'
-            id='ml_lgorithms'>
-            </a>
-        4. Используемые ML-алгоритмы
-        </h2>
-        <ul>
-            <li><i>Logistic Regression (linear):</i> самый простой и легко интерпретируемый алгоритм;</li>
-            <li><i>Random Forest (bagging):</i> сложнее для интерпретации, чем регрессия, но прогнозы точнее;</li>
-            <li><i>XGBoost (boosting):</i> самый эффективный с точки зрения прогнозов, но сложен для интерпретации и в подборе гиперпараметров;</li>
-            <li><i>LightGBM (boosting):</i> работает быстрее, чем XGBoost, но эффективность ниже.</li>
-            </ul>
-    <h2>
-        <a
-            class='anchor'
-            id='cross_val_specifics'>
-            </a>
-        5. Особенности работы с последовательностью транзакций и временными рядами
-        </h2>
-        <p>
-            Время, необходимое для проверки подозрительных транзакций, учитывается в виде дополнительного параметра модели (<sb>задержка</sb>). Задержка принимается равной одной неделе.
-            <space></space>
-            Банковские карты, определенные в период обучения и период задержки как мошеннические, <sb>удаляются</sb> из тестового датасета.
-            <space></space>
-            Для валидации моделей используется предварительная валидация (<sb>prequential validation</sb>) со скользящим окном. Периоды обучающего, валидационного и тестового набора данных, а также задержки, одинаковы и принимаются равными одной неделе.
-            <space></space>
-            <img src='img/prequential_validation.png' style='width:550px;display:block;margin-left:auto;margin-right:auto'>
-            </p>
-    <h2>
-        <a
-            class='anchor'
-            id='metrics'>
-            </a>
-        6. Метрики для оценки эффективности моделей
-        </h2>
-        <ul>
-            
-            <li><sb>AUC ROC</sb> (площадь под кривой ROC) - классическая метрика оценки эффективности работы алгоритмов машинного обучения.
-              Хорошо изучена и часто применяется в разных сегментах противодействия мошенничеству.</li>
-            <li><sb>Card Precision Top-k</sb> - не так широко представлена, как AUC ROC, но обладает большим потенциалом.  
-              Учитывает специфику работы с транзакциями в системе выявления и верификации мошеннических операций финансовых организаций.</li>
-            <li><sb>Average Precision</sb> (площадь под кривой Precision-Recall) - так же хорошо известная метрика.  
-              Здесь используется как бенчмарк для выбора оптимальной модели - компромисс между AUC ROC и Card Precision.</li>
-            </ul>
-    <h2>
-        <a
-            class='anchor'
-            id='models_base'>
-            </a>
-        7. Результаты базовых моделей
-        </h2>
-        <p>
-            Модели и гиперпараметры, наиболее эффективные с точки зрения Average Precision:
-            </p>
-        <ul>
-            <li>Logictic Regression (penalty=l2, C=1, solver='saga', max_iter=5000);</li>
-            <li>Random Forest (n_estimators=150, max_depth=25);</li>
-            <li>XGBoost (n_estimators=150, max_depth=3, learning_rate=0.1);</li>
-            <li>LightGBM (n_estimators=150, max_depth=3, learning_rate=0.1).</li>
-            </ul>
-        <p>
-            <i>Примечание: Доверительные интервалы рассчитаны по итогам предварительной валидации, состоящей из 4 train-valid-test блоков данных (folds). Этого недостаточно для выводов о статистической значимости. Однако, можно сделать предположение, что полученные результаты не изменятся с увеличением числа симуляций - доверительные интервалы будут сужаться без заметного изменения относительной эффективности моделей.</i>
-            <space></space>
-            <img src='img/performance_metrics.png' style='display:block;margin-left:-5px;margin-right:auto;'>
-            <space></space>
-            Логистическая регрессия эффективно сработала с точки зрения AUC ROC, но уступает ансамблевым алгоритмам по другим метрикам. По совокупности XGBoost выглядит наиболее предпочтительным. 
-            <space></space>
-            В пункте 8 описаны метрики, оценивающие модель в контексте количества выявленных мошеннических <sb>транзакций</sb>. В пункте 9 исследуется метрика, ориентированная на охват как можно бóльшего числа <sb>банковских карт</sb> используемых мошенниками.
-            </p>
-    <h2>
-        <a
-            class='anchor'
-            id='metrics_transactions'>
-            </a>
-        8. Метрики, ориентированные на транзакции
-        </h2>
-        <p>
-            В пунктах 8.1. и 8.2. оценим модели в терминах машинного обучения. Далее в пункте 8.3. посмотрим, как эти метрики связаны с эффективностью обнаружения мошеннических операций. 
-            </p>
-        <h3>
-            <a
-                class='anchor'
-                id='auc_roc'>
-                </a>
-            8.1. AUC ROC
-            </h3>
-        <p>
-            Построим ROC-кривую для оценки эффективности алгоритмов (используются суточные данные).
-            <space></space>
-            <img src='img/roc_curve.png'>
-            <space></space>
-            Logistic Regression и Random Forest работают чуть лучше. Если оценивать исключительно по AUC ROC, то эти алгоритмы - предпочтительный выбор. Начиная со значения False Positive Rate, равного примерно 0.3, заметен провал XGBoost по эффективности.
-            <space></space>
-            Площадь под кривой ROC (AUC) - одна из наиболее популярных метрик для оценки моделей машинного обучения. В то же время она плохо подходит для оценки моделей, созданных для выявления мошеннических операций с банковскими картами.
-            <space></space>
-            Дело в том, что по определению метрика AUC ROC агрегирует производительность модели для всей площади под кривой ROC. Но модели по выявлению мошенничества обычно работают в диапазоне False Positive Rate не выше 0.001. При бóльшем уровне False Positive Rate, модель будет фиксировать ложные мошенничества настолько часто, что для их ручной проверки потребуется слишком много времени. Таким образом, актуальной является крайне небольшая часть графика для значения False Positive Rate меньше 0.001.
-            <space></space>
-            Более гибкой и полезной метрикой в этом смысле является Precision-Recall.
-            </p>
-        <h3>
-            <a
-                class='anchor'
-                id='precision_recall'>
-                </a>
-            8.2. Precision-Recall
-            </h3>
-        <p>
-            Построим кривую Precision-Recall. Оптимальные соотношения Precision и Recall здесь рассчитаны через среднее гармоническое (F1-мера).
-            <space></space>
-            <img src='img/pr_curve.png'>
-            <space></space>
-            Logistic Regression и LightGBM работают чуть хуже. Random Forest и XGBoost показывают одинаковые результаты в оптимальной точке. Кривая XGBoost выглядит интереснее, покрывает бóльшую площадь, а значит более эффективна и лучше настраивается с помощью подбора порогового значения. 
-            <space></space>
-            На примере XGBoost изучим воздействие значения порогового коэффициента на число выявляемых мошеннических транзакций.
-            </p>
-        <h3>
-            <a
-                class='anchor'
-                id='precision_recall_tradeoff'>
-                </a>
-            8.3. Precision-Recall Trade-off
-            </h3>
-        <p>
-            Модель можно подстраивать с помощью изменения величины порогового коэффициента (<sb>threshold</sb>).  
-            Отобразим результаты алгоритма XGBoost в виде матрицы ошибок.
-            <space></space>
-            <img src='img/confmatrix_xgb_thresh.png' style='display:block;margin-left:auto;margin-right:auto;'>
-            <space></space>
-            Всего алгоритм оценил 57 443 транзакции (общее число мошенничеств - 381 (0.66%)).  
-            <space></space>
-            Правильно классифицированы:
-            </p>
-        <ul>
-            <li>57 053 транзакции как легальные;</li>
-            <li>227 транзакции как мошеннические.</li>
-            </ul>
-        <p>
-            Допущенные ошибки:
-            </p>
-            <ul>
-                <li>9 легальных транзакций классифицировано как мошеннические;</li>
-                <li>154 мошенническим транзакциям присвоен статус легальных.</li>
-                </ul>
-        <p>
-            Алгоритм <sb>очень точно</sb> классифицирует транзакции. Если транзакции присвоена метка "мошенничество", то в 96% ручная обработка транзакции это подтверждает.
-            <space></space>
-            Соотношение точности (<sb>Precision</sb>, 96%) и охвата (<sb>Recall</sb>, 60%) можно варьировать, изменяя пороговое значение оценок алгоритма. Увеличение охвата модели (то есть способность замечать больше мошеннических транзакций) приводит к уменьшению точности.
-            <space></space>
-            Чтобы настроить модель под бизнес-задачи, необходимо оценить:
-            </p>
-            <ul>
-                <li>финансовые потери в среднем от одной упущенной (незамеченной) транзакции;</li>
-                <li>затраты на проверку одной подозрительной транзакции.</li>
-                </ul>
-        <p>
-            График показывает изменение точности (Precision) и охвата (Recall) в зависимости от величины порогового коэффициента. Кривая F1-score - это агрегированный показатель, оценивающий совокупную эффективность.
-            <space></space>
-            <img src='img/pr_tradeoff_plot.png' style='display:block;margin-left: auto;margin-right:auto;'>
-            <space></space>
-            Показатели практически неизменны на всём диапазоне пороговых значений выше 0.15.
-            <space></space>
-            Преобразуем эти метрики для улучшения интерпретации - построим график зависимости <sb>упущенных мошенничеств</sb> от числа <sb>ошибочно предсказанных</sb> мошенничеств.
-            <space></space>
-            <img src='img/missedwrong_tradeoff_1.png' style='display:block;margin-left: auto;margin-right:auto;'>
-            <space></space>
-            Здесь проявляется общая логика работы с пороговым коэффициентом - снижение числа упущенных мошенничеств приводит к увеличению количества ошибок в прогнозах (ложно-положительные предсказания). Маневр для подстройки модели имеется в диапазоне от 0 до 150 по оси X (выделено пунктирной линией). В остальных частях графика взаимосвязь практически отсутствует. 
-            <space></space>
-            Увеличим область, отмеченную пунктиром.
-            <space></space>
-            <img src='img/missedwrong_tradeoff_2.png' style='display:block;margin-left: auto;margin-right:auto;'>
-            <space></space>
-            В интервале, отмеченном светло-серой областью, соотношение <i>1 к 2</i>:
-            </p>
-            <ul>
-                <li>уменьшение количества пропущенных мошенничеств на 1 транзакцию (ось Y);</li>
-                <li>приведет к увеличению ложных срабатываний на 2 транзакции (ось X).</li>
-                </ul>
-        <p>
-            В интервале, отмеченном темно-серой областью, соотношение <i>1 к 4</i>:
-            </p>
-        <ul>
-            <li>уменьшение количества пропущенных мошенничеств на 1 транзакцию (ось Y);</li>
-            <li>приведет к увеличению ложных срабатываний на 4 транзакции (ось X).</li>
-            </ul>
-            <space></space>
-            <h4>
-                Вывод
-                </h4>
-            <space></space>
-        <ul>
-            <li>Невозможно одновременно увеличивать точность и степень охвата алгоритма;</li>
-            <li>Компромисс между точностью и охватом - это компромисс между <sb>ценой</sb> упущенной мошеннической транзакции и <sb>издержками</sb> на проверку подозрительных транзакций.</li>
-            </ul>
-        <p>
-            В зависимости от величины соответствующих затрат, выбирается оптимальное значение порогового коэффициента. 
-            </p>
-    <h2>
-        <a
-            class='anchor'
-            id='metrics_cards'>
-            </a>
-        9. Метрики, ориентированные на банковские карты
-        </h2>
-        <h3>
-            <a
-                class='anchor'
-                id='card_precision_top_k'>
-                </a>
-            9.1. Card Precision top-k
-            </h3>
-        <p>
-            Card Precision - это метрика, которая учитывает оперативные возможности банковских сотрудников, проверяющих подозрительные транзакции. Она показывает долю реальных мошеннических карт из <i>k</i> наиболее подозрительных с точки зрения модели. Параметр <i>k</i> обычно принимается равным количеству карт, которое специалисты способны проверить вручную за сутки.
-            <space></space>
-            Модель, выбранная с помощью данной метрики, фиксирует больше разнородных транзакций. Подобная вариативность приводит к бóльшему охвату по картам. Теоретически, охват бóльшего числа карт мошенников позволяет предотвратить бóльшие потери в будущем.
-            <space></space>
-            Помимо этого, метрика Card Precision top-k интуитивно более понятна специалистам, которые осуществляют проверку подозрительных транзакций.
-            </p>
-            <h4>
-                Пример на суточных данных
-                </h4>
-        <p>
-            Всего транзакций: 8267.<br>
-            Из них мошеннических: 54 (0.65%).  
-            <space></space>
-            Всего карт: 3203 (в среднем 2.5 транзакции на карту).<br>
-            Из них мошеннических: 51 (1.6%).
-            <space></space>
-            Параметр <i>k</i> принимается равным 100.
-            <space></space>
-            Показатели алгоритма XGBoost:
-            </p>
-            <ul>
-                <li>Выявлено 30 мошеннических карт (59% от общего числа мошеннических карт - синий цвет, см. график);</li>
-                <li>65 карт правильно классифицированы как легальные (зеленый цвет, см. график);</li>
-                <li>Не замечена 21 мошенническая карта (41% от общего числа мошеннических карт - красный и серый цвет, см. график);</li>
-                <li>В топ-100 подозрительных попали 5 карт, которые при этом не были классифицированы как мошеннические (серый цвет, см. график).</li>
-                </ul>
-            <space></space>
-            <img src='img/cp_100.png' style='margin-left:-5px;'>
-        <p>
-            Точность алгоритма - 100%. Все карты, которым модель присвоила метку "мошенничество", действительно оказались мошенническими. Это полезная информация для сотрудников, отвечающих за проверку подозрительных транзакций. Карты и транзакции, отмеченные моделью как мошеннические, должны проверяться в первую очередь.
-            <space></space>
-            Метрика CardPrecision@100 равна 30 / 100 = 0.300. Максимальное значение метрики в данном случае - это число истинно мошеннических карт, деленное на <i>k</i>: 51 / 100 = 0.510. Идеальная модель поместила бы 51 карту в топ-100 наиболее подозрительных.
-            </p>
-            <h4>
-                Алгоритм расчета Card Precision top-k
-                </h4>
-        <p>
-            Для расчета метрики используется значение вероятности мошенничества <i>p</i>, которое модель присваивает каждой транзакции.
-            </p>
-            <ul>
-                <li>для каждой карты определяются все транзакции, совершенные по ней за сутки;</li>
-                <li>среди них самая высокая вероятность мошенничества <i>p</i> (наиболее подозрительная транзакция) становится <sb>коэффициентом</sb> этой карты;</li>
-                <li>карты сортируются по убыванию величины коэффициента;</li>
-                <li>выбираются топ <i>k</i> карт с наиболее высоким значением коэффициента;</li>
-                <li>считается доля правильно классифицированных мошеннических карт из числа топ <i>k</i>;</li>
-                </ul>
-            <h4>
-                Вывод
-                </h4>
-            <space></space>
-        <p>
-            Card Precision - эффективная метрика, которая адаптирована под выявление и предупреждение мошеннических операций с кредитными картами (в отличие от классических ML-метрик).
-            </p>
-    <h2>
-        <a
-            class='anchor'
-            id='unbalanced_techniques'>
-            </a>
-        10. Техники для преобразования несбалансированных датасетов
-        </h2>
-        <p>
-            Рассмотрены:
-            </p>
-            <ul>
-                <li>удаление мажоритарных классов (undersampling);</li>
-                <li>комбинированный подход (undersampling + oversampling);</li>
-                <li>использование весов классов (weighted models).</li>
-                </ul>
-            <h4>
-                AUC ROC
-                </h4>
-        <p>
-            <space></space>
-            AUC ROC каждой из исследуемых моделей можно улучшить с помощью техник балансировки.  
-            <space></space>
-            Для Logistic Regression и Random Forest наиболее эффективен комбинированный подход. XGBoost немного улучшается после присваивания веса каждому классу. LightGBM лучше работает после удаления мажоритарных классов, но тем не менее не достигает лучших показателей остальных моделей.
-            <space></space>
-            <img src='img/unbalanced_roc_auc.png' style='margin-left:10px'>
-            </p>
-            <h4>
-                Average Precision
-                </h4>
-        <p>
-            Average Precision демонстрирует обратную ситуацию. Улучшились результаты только LightGBM (снова с помощью undersampling), но недостаточно, чтобы конкурировать с XGBoost и Random Forest. Logistic Regression стабильно менее эффективна, чем остальные алгоритмы.  
-            <space></space>
-            <img src='img/unbalanced_av_prec.png' style='margin-left:10px'>
-            <space></space>
-            </p>
-            <h4>
-                Card Precision
-                </h4>
-        <p>
-            Для Card Precision наблюдается похожая картина. Заметное ухудшение производительности всех моделей при комбинированном подходе. Базовый XGBoost остается самым эффективным алгоритмом.  
-            <space></space>
-            <img src='img/unbalanced_card_prec.png' style='margin-left:10px'>
-            <space></space>
-            </p>
-            <h4>
-                Вывод
-                </h4>
-        <p>
-            Можно сказать, что в целом техники работы с несбалансированными датасетами не дают заметного прироста в результатах, а в контексте Average Precision и Card Precision могут заметно уменьшить эффективность лучших моделей. Как было отмечено выше, числа симуляций (N: 4) недостаточно для однозначного вывода.
-            <space></space>
-            Дисперсия на примере результатов XGBoost.
-            <space></space>
-            <img src='img/unbalanced_xgb.png' style='margin-left:-5px'>
-            <space></space>
-            </p>
-    <h2>
-        <a
-            class='anchor'
-            id='time'>
-            </a>
-        11. Время работы алгоритмов
-        </h2>
-        <p>
-            При работе с банковскими транзакциями скорость выполнения операций является одним из ключевых факторов. 
-            <space></space>
-            Можно отметить, что несмотря на невысокую скорость подбора гиперпараметров и обучения, XGBoost очень быстро генерирует прогнозы и уступает по этому показателю только самому "легкому" алгоритму - Logistic Regression. 
-            <space></space>
-            <img src='img/score_time.png'>
-            <space></space>
-            LightGBM и Logistic Regression - явно лидируют по скорости обучения и поиска гиперпараметров. 
-            <space></space>
-            <img src='img/fit_hyper_time.png'>
-            </p>
-    <h2>
-        <a
-            class='anchor'
-            id='appendix'>
-            </a>
-        12. Приложение. Результаты валидации и тестирования моделей
-        </h2>
-        <p>
-            Модели оцениваются по трем метрикам: AUC ROC, Average Precision, CardPrecision@100.  
-            Оптимальной считается модель с наивысшем значением Average Precision на валидационном датасете.
-            <h4>
-                <i>Logistic Rgression</i>
-                </h4>
-            <img src='img/performance_lr_df.png'>
-            <img src='img/performance_lr.png' style='display:block;margin-left:-15px;margin-right:auto;'>
-            <h4>
-                <i>Random Forest</i>
-                </h4>
-            <img src='img/performance_rf_df.png'>
-            <img src='img/performance_rf.png' style='display:block;margin-left:-15px;margin-right:auto;'>
-            <h4>
-                <i>XGBoost</i>
-                </h4>
-            <img src='img/performance_xgb_df.png'>
-            <img src='img/performance_xgb.png' style='display:block;margin-left:-15px;margin-right:auto;'>
-            <h4>
-                <i>LightGBM</i>
-                </h4>
-            <img src='img/performance_lgb_df.png'>
-            <img src='img/performance_lgb.png' style='display:block;margin-left:-15px;margin-right:auto;'>
-            </p>
-        </div>
-    </div>
+</div>
 <script>
+// Button 'Наверх'
 let mybutton = document.getElementById('toTocBtn');
-
-// When the user scrolls down 20px from the top of the document, show the button
+    // When the user scrolls down 300px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
-
 function scrollFunction() {
-  if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
     mybutton.style.display = "block";
   } else {
     mybutton.style.display = "none";
   }
 }
-
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 290; // For Safari
-  document.documentElement.scrollTop = 290; // For Chrome, Firefox, IE and Opera
-}
-
+// Scroll to element (anchor 'href' analog)
 function scrollToID(id) {
     let element = document.getElementById(id);
     element.scrollIntoView({
@@ -775,8 +460,28 @@ function scrollToID(id) {
       // behavior: 'smooth',
       inline: 'start'
     });
-}
-    </script>
-<pageend></pageend>
+} 
+// Increase size of pictures
+function clickSize(img) {
+      img.classList.toggle('change-size');
+    }
+// Tracking sections with menu
+window.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+      // if (entry.intersectionRatio > 0) {
+      if (entry.intersectionRatio > 0) {
+        document.querySelector(`nav li a[id="#${id}"]`).parentElement.classList.add('active');
+      } else {
+        document.querySelector(`nav li a[id="#${id}"]`).parentElement.classList.remove('active');
+      }
+    });
+  });
+    // Track all sections that have an `id` applied
+    document.querySelectorAll('section[id]').forEach((section) => {
+    observer.observe(section);
+});
+});
+</script>
 </body>
-</html>

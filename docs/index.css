@@ -107,7 +107,7 @@ main-container > nav {
     color: #606060;
 }
 .toc li::marker {
-    content: url(img/star.svg);
+    /* content: url(img/star.svg); */
     font-size: 0.1em;
 }
 .toc li {

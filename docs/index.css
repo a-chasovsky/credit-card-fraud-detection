@@ -106,7 +106,7 @@ main-container > nav {
     padding-left: 2em;
     color: #606060;
 }
-.toc li::marker {
+.toc ol li::marker {
     font-size: 0.1em;
 }
 .toc li {

@@ -109,9 +109,10 @@ main-container > nav {
     text-align: left;
 }
 .toc li::marker {
-    content: '✝ ';
+    /* content: '✝ '; */
     color: #404040;
-    font-size: 0.7em;
+    font-size: 1em;
+    vertical-align:-1.3em;
 }
 /* .toc ul li::marker {
     content: '✝ ';
@@ -134,7 +135,7 @@ ul {
 li {
     font-family: system-ui;
     line-height: 1.75em;
-    text-align: justify
+    text-align: justify;
 }
 img-center {
     display: flex;

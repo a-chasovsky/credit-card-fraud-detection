@@ -107,13 +107,12 @@ main-container > nav {
     color: #606060;
 }
 .toc ol li::marker {
-    font-size: 0.1em;
-    color: red;
+    /* font-size: 1em; */
+    /* color: red; */
 }
 .toc li {
     text-align: left;
-    /* list-style-image: url(img/star.svg); */
-    list-style: disc;
+    list-style-image: url(<svg src='img/star.svg' viewBox="0 2 2 2"><svg);
 }
 .toc li.active > a {
     font-weight:600;

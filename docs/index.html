@@ -31,7 +31,7 @@
 <sub-container style='border-right: 1px solid #CFD7DE;'>
 <content-container style='text-align:right;'>
     <h1 id='title' style='text-align:right;'>
-       4Обнаружение мошеннических операций с кредитными картами
+       5Обнаружение мошеннических операций с кредитными картами
     </h1>
     <h5 style='text-align:right;margin-top:-0.5em;'>
        Машинное обучение, классификация
@@ -688,7 +688,7 @@
     <space></space>
     <img-center>
     <img 
-        src='img/performance_metrics.png' 
+        src='img/performance_metrics.svg' 
         style='width:100%;'>
         </img-center>
     <space></space>
@@ -707,7 +707,7 @@
     Построим ROC-кривую для оценки эффективности алгоритмов (используются суточные данные).
     <space></space>
     <img-center>
-    <img src='img/roc_curve.png'>
+    <img src='img/roc_curve.svg'>
         </img-center>
     <space></space>
     Logistic Regression и Random Forest работают чуть лучше. Если оценивать исключительно по AUC ROC, то эти алгоритмы - предпочтительный выбор. Начиная со значения False Positive Rate, равного примерно 0.3, заметен провал XGBoost по эффективности.
@@ -724,7 +724,7 @@
     Построим кривую Precision-Recall. Оптимальные соотношения Precision и Recall здесь рассчитаны через среднее гармоническое (F1-мера).
     <space></space>
     <img-center>
-    <img src='img/pr_curve.png'>
+    <img src='img/pr_curve.svg'>
         </img-center>
     <space></space>
     Logistic Regression и LightGBM работают чуть хуже. Random Forest и XGBoost показывают одинаковые результаты в оптимальной точке. Кривая XGBoost выглядит интереснее, покрывает бóльшую площадь, а значит более эффективна и лучше настраивается с помощью подбора порогового значения.
@@ -738,7 +738,7 @@
     Отобразим результаты алгоритма XGBoost в виде матрицы ошибок.
     <space></space>
     <img-center>
-    <img src='img/confmatrix_xgb_thresh.png'>
+    <img src='img/confmatrix_xgb_thresh.svg'>
         </img-center>
     <space></space>
     Всего алгоритм оценил 57 443 транзакции (общее число мошенничеств - 381 (0.66%)).  
@@ -838,7 +838,7 @@
         </ul>
     <space></space>
     <img-center>
-    <img src='img/cp_100.png'>
+    <img src='img/cp_100.svg'>
         </img-center>
     Точность алгоритма - 100%. Все карты, которым модель присвоила метку "мошенничество", действительно оказались мошенническими. Это полезная информация для сотрудников, отвечающих за проверку подозрительных транзакций. Карты и транзакции, отмеченные моделью как мошеннические, должны проверяться в первую очередь.
     <space></space>
@@ -879,7 +879,7 @@
     Для Logistic Regression и Random Forest наиболее эффективен комбинированный подход. XGBoost немного улучшается после присваивания веса каждому классу. LightGBM лучше работает после удаления мажоритарных классов, но тем не менее не достигает лучших показателей остальных моделей.
     <space></space>
     <img-center>
-    <img src='img/unbalanced_roc_auc.png'>
+    <img src='img/unbalanced_roc_auc.svg'>
         </img-center>
     <h4>
         Average Precision
@@ -888,7 +888,7 @@
     Average Precision демонстрирует обратную ситуацию. Улучшились результаты только LightGBM (снова с помощью undersampling), но недостаточно, чтобы конкурировать с XGBoost и Random Forest. Logistic Regression стабильно менее эффективна, чем остальные алгоритмы.  
     <space></space>
     <img-center>
-    <img src='img/unbalanced_av_prec.png'>
+    <img src='img/unbalanced_av_prec.svg'>
         </img-center>
     <space></space>
     <h4>
@@ -898,7 +898,7 @@
     Для Card Precision наблюдается похожая картина. Заметное ухудшение производительности всех моделей при комбинированном подходе. Базовый XGBoost остается самым эффективным алгоритмом.  
     <space></space>
     <img-center>
-    <img src='img/unbalanced_card_prec.png'>
+    <img src='img/unbalanced_card_prec.svg'>
         </img-center>
     <space></space>
     <h4>
@@ -910,7 +910,7 @@
     Дисперсия на примере результатов XGBoost.
     <space></space>
     <img-center>
-    <img src='img/unbalanced_xgb.png'>
+    <img src='img/unbalanced_xgb.svg'>
         </img-center>
     <space></space>
     <h2 id='time'>
@@ -922,13 +922,13 @@
     Можно отметить, что несмотря на невысокую скорость подбора гиперпараметров и обучения, XGBoost очень быстро генерирует прогнозы и уступает по этому показателю только самому "легкому" алгоритму - Logistic Regression. 
     <space></space>
     <img-center>
-    <img src='img/score_time.png'>
+    <img src='img/score_time.svg'>
         </img-center>
     <space></space>
     LightGBM и Logistic Regression - явно лидируют по скорости обучения и поиска гиперпараметров. 
     <space></space>
     <img-center>
-    <img src='img/fit_hyper_time.png'>
+    <img src='img/fit_hyper_time.svg'>
         </img-center>
     <h2 id='appendix'>
         Приложение. Результаты валидации и тестирования моделей
@@ -944,7 +944,7 @@
     <img src='img/performance_lr_df.png'>
         </img-center>
     <img-center>
-    <img src='img/performance_lr.png'>
+    <img src='img/performance_lr.svg'>
         </img-center>
     <h4>
         <i>Random Forest</i>
@@ -954,7 +954,7 @@
     <img src='img/performance_rf_df.png'>
         </img-center>
     <img-center>
-    <img src='img/performance_rf.png'>
+    <img src='img/performance_rf.svg'>
         </img-center>
     <h4>
         <i>XGBoost</i>
@@ -964,7 +964,7 @@
     <img src='img/performance_xgb_df.png'>
         </img-center>
     <img-center>
-    <img src='img/performance_xgb.png'>
+    <img src='img/performance_xgb.svg'>
         </img-center>
     <h4>
         <i>LightGBM</i>
@@ -974,14 +974,14 @@
     <img src='img/performance_lgb_df.png'>
         </img-center>
     <img-center>
-    <img src='img/performance_lgb.png'>
+    <img src='img/performance_lgb.svg'>
         </img-center>
 </content-container>
 </page-container>
 </div>
 
 <!-- Mobile Version 480px: MobVer 2 -->
-<div class='mobile_device_480px' style='margin-bottom:10em;'>
+<div class='mobile_device_380px' style='margin-bottom:10em;'>
     <page-container>
     <img 
         src='img/header.png'
@@ -1132,7 +1132,7 @@
     <space></space>
     <img-center>
     <img 
-        src='img/performance_metrics.png' 
+        src='img/performance_metrics.svg' 
         style='width:100%;'>
         </img-center>
     <space></space>
@@ -1151,7 +1151,7 @@
     Построим ROC-кривую для оценки эффективности алгоритмов (используются суточные данные).
     <space></space>
     <img-center>
-    <img src='img/roc_curve.png'>
+    <img src='img/roc_curve.svg'>
         </img-center>
     <space></space>
     Logistic Regression и Random Forest работают чуть лучше. Если оценивать исключительно по AUC ROC, то эти алгоритмы - предпочтительный выбор. Начиная со значения False Positive Rate, равного примерно 0.3, заметен провал XGBoost по эффективности.
@@ -1168,7 +1168,7 @@
     Построим кривую Precision-Recall. Оптимальные соотношения Precision и Recall здесь рассчитаны через среднее гармоническое (F1-мера).
     <space></space>
     <img-center>
-    <img src='img/pr_curve.png'>
+    <img src='img/pr_curve.svg'>
         </img-center>
     <space></space>
     Logistic Regression и LightGBM работают чуть хуже. Random Forest и XGBoost показывают одинаковые результаты в оптимальной точке. Кривая XGBoost выглядит интереснее, покрывает бóльшую площадь, а значит более эффективна и лучше настраивается с помощью подбора порогового значения.
@@ -1182,7 +1182,7 @@
     Отобразим результаты алгоритма XGBoost в виде матрицы ошибок.
     <space></space>
     <img-center>
-    <img src='img/confmatrix_xgb_thresh.png'>
+    <img src='img/confmatrix_xgb_thresh.svg'>
         </img-center>
     <space></space>
     Всего алгоритм оценил 57 443 транзакции (общее число мошенничеств - 381 (0.66%)).  
@@ -1282,7 +1282,7 @@
         </ul>
     <space></space>
     <img-center>
-    <img src='img/cp_100.png'>
+    <img src='img/cp_100.svg'>
         </img-center>
     Точность алгоритма - 100%. Все карты, которым модель присвоила метку "мошенничество", действительно оказались мошенническими. Это полезная информация для сотрудников, отвечающих за проверку подозрительных транзакций. Карты и транзакции, отмеченные моделью как мошеннические, должны проверяться в первую очередь.
     <space></space>
@@ -1323,7 +1323,7 @@
     Для Logistic Regression и Random Forest наиболее эффективен комбинированный подход. XGBoost немного улучшается после присваивания веса каждому классу. LightGBM лучше работает после удаления мажоритарных классов, но тем не менее не достигает лучших показателей остальных моделей.
     <space></space>
     <img-center>
-    <img src='img/unbalanced_roc_auc.png'>
+    <img src='img/unbalanced_roc_auc.svg'>
         </img-center>
     <h4>
         Average Precision
@@ -1332,7 +1332,7 @@
     Average Precision демонстрирует обратную ситуацию. Улучшились результаты только LightGBM (снова с помощью undersampling), но недостаточно, чтобы конкурировать с XGBoost и Random Forest. Logistic Regression стабильно менее эффективна, чем остальные алгоритмы.  
     <space></space>
     <img-center>
-    <img src='img/unbalanced_av_prec.png'>
+    <img src='img/unbalanced_av_prec.svg'>
         </img-center>
     <space></space>
     <h4>
@@ -1342,7 +1342,7 @@
     Для Card Precision наблюдается похожая картина. Заметное ухудшение производительности всех моделей при комбинированном подходе. Базовый XGBoost остается самым эффективным алгоритмом.  
     <space></space>
     <img-center>
-    <img src='img/unbalanced_card_prec.png'>
+    <img src='img/unbalanced_card_prec.svg'>
         </img-center>
     <space></space>
     <h4>
@@ -1354,7 +1354,7 @@
     Дисперсия на примере результатов XGBoost.
     <space></space>
     <img-center>
-    <img src='img/unbalanced_xgb.png'>
+    <img src='img/unbalanced_xgb.svg'>
         </img-center>
     <space></space>
     <h2 id='time'>
@@ -1366,13 +1366,13 @@
     Можно отметить, что несмотря на невысокую скорость подбора гиперпараметров и обучения, XGBoost очень быстро генерирует прогнозы и уступает по этому показателю только самому "легкому" алгоритму - Logistic Regression. 
     <space></space>
     <img-center>
-    <img src='img/score_time.png'>
+    <img src='img/score_time.svg'>
         </img-center>
     <space></space>
     LightGBM и Logistic Regression - явно лидируют по скорости обучения и поиска гиперпараметров. 
     <space></space>
     <img-center>
-    <img src='img/fit_hyper_time.png'>
+    <img src='img/fit_hyper_time.svg'>
         </img-center>
     <h2 id='appendix'>
         Приложение. Результаты валидации и тестирования моделей
@@ -1388,7 +1388,7 @@
     <img src='img/performance_lr_df.png'>
         </img-center>
     <img-center>
-    <img src='img/performance_lr.png'>
+    <img src='img/performance_lr.svg'>
         </img-center>
     <h4>
         <i>Random Forest</i>
@@ -1398,7 +1398,7 @@
     <img src='img/performance_rf_df.png'>
         </img-center>
     <img-center>
-    <img src='img/performance_rf.png'>
+    <img src='img/performance_rf.svg'>
         </img-center>
     <h4>
         <i>XGBoost</i>
@@ -1408,7 +1408,7 @@
     <img src='img/performance_xgb_df.png'>
         </img-center>
     <img-center>
-    <img src='img/performance_xgb.png'>
+    <img src='img/performance_xgb.svg'>
         </img-center>
     <h4>
         <i>LightGBM</i>
@@ -1418,14 +1418,14 @@
     <img src='img/performance_lgb_df.png'>
         </img-center>
     <img-center>
-    <img src='img/performance_lgb.png'>
+    <img src='img/performance_lgb.svg'>
         </img-center>
 </content-container>
 </page-container>
 </div>
 
 <!-- Mobile Version 1000px: MobVer 3 -->
-<div class='mobile_device_1000px' style='margin-bottom:10em;'>
+<div class='mobile_device_380px' style='margin-bottom:10em;'>
     <page-container>
     <img 
         src='img/header.png'
@@ -1576,7 +1576,7 @@
     <space></space>
     <img-center>
     <img 
-        src='img/performance_metrics.png' 
+        src='img/performance_metrics.svg' 
         style='width:100%;'>
         </img-center>
     <space></space>
@@ -1595,7 +1595,7 @@
     Построим ROC-кривую для оценки эффективности алгоритмов (используются суточные данные).
     <space></space>
     <img-center>
-    <img src='img/roc_curve.png'>
+    <img src='img/roc_curve.svg'>
         </img-center>
     <space></space>
     Logistic Regression и Random Forest работают чуть лучше. Если оценивать исключительно по AUC ROC, то эти алгоритмы - предпочтительный выбор. Начиная со значения False Positive Rate, равного примерно 0.3, заметен провал XGBoost по эффективности.
@@ -1612,7 +1612,7 @@
     Построим кривую Precision-Recall. Оптимальные соотношения Precision и Recall здесь рассчитаны через среднее гармоническое (F1-мера).
     <space></space>
     <img-center>
-    <img src='img/pr_curve.png'>
+    <img src='img/pr_curve.svg'>
         </img-center>
     <space></space>
     Logistic Regression и LightGBM работают чуть хуже. Random Forest и XGBoost показывают одинаковые результаты в оптимальной точке. Кривая XGBoost выглядит интереснее, покрывает бóльшую площадь, а значит более эффективна и лучше настраивается с помощью подбора порогового значения.
@@ -1626,7 +1626,7 @@
     Отобразим результаты алгоритма XGBoost в виде матрицы ошибок.
     <space></space>
     <img-center>
-    <img src='img/confmatrix_xgb_thresh.png'>
+    <img src='img/confmatrix_xgb_thresh.svg'>
         </img-center>
     <space></space>
     Всего алгоритм оценил 57 443 транзакции (общее число мошенничеств - 381 (0.66%)).  
@@ -1726,7 +1726,7 @@
         </ul>
     <space></space>
     <img-center>
-    <img src='img/cp_100.png'>
+    <img src='img/cp_100.svg'>
         </img-center>
     Точность алгоритма - 100%. Все карты, которым модель присвоила метку "мошенничество", действительно оказались мошенническими. Это полезная информация для сотрудников, отвечающих за проверку подозрительных транзакций. Карты и транзакции, отмеченные моделью как мошеннические, должны проверяться в первую очередь.
     <space></space>
@@ -1767,7 +1767,7 @@
     Для Logistic Regression и Random Forest наиболее эффективен комбинированный подход. XGBoost немного улучшается после присваивания веса каждому классу. LightGBM лучше работает после удаления мажоритарных классов, но тем не менее не достигает лучших показателей остальных моделей.
     <space></space>
     <img-center>
-    <img src='img/unbalanced_roc_auc.png'>
+    <img src='img/unbalanced_roc_auc.svg'>
         </img-center>
     <h4>
         Average Precision
@@ -1776,7 +1776,7 @@
     Average Precision демонстрирует обратную ситуацию. Улучшились результаты только LightGBM (снова с помощью undersampling), но недостаточно, чтобы конкурировать с XGBoost и Random Forest. Logistic Regression стабильно менее эффективна, чем остальные алгоритмы.  
     <space></space>
     <img-center>
-    <img src='img/unbalanced_av_prec.png'>
+    <img src='img/unbalanced_av_prec.svg'>
         </img-center>
     <space></space>
     <h4>
@@ -1786,7 +1786,7 @@
     Для Card Precision наблюдается похожая картина. Заметное ухудшение производительности всех моделей при комбинированном подходе. Базовый XGBoost остается самым эффективным алгоритмом.  
     <space></space>
     <img-center>
-    <img src='img/unbalanced_card_prec.png'>
+    <img src='img/unbalanced_card_prec.svg'>
         </img-center>
     <space></space>
     <h4>
@@ -1798,7 +1798,7 @@
     Дисперсия на примере результатов XGBoost.
     <space></space>
     <img-center>
-    <img src='img/unbalanced_xgb.png'>
+    <img src='img/unbalanced_xgb.svg'>
         </img-center>
     <space></space>
     <h2 id='time'>
@@ -1810,13 +1810,13 @@
     Можно отметить, что несмотря на невысокую скорость подбора гиперпараметров и обучения, XGBoost очень быстро генерирует прогнозы и уступает по этому показателю только самому "легкому" алгоритму - Logistic Regression. 
     <space></space>
     <img-center>
-    <img src='img/score_time.png'>
+    <img src='img/score_time.svg'>
         </img-center>
     <space></space>
     LightGBM и Logistic Regression - явно лидируют по скорости обучения и поиска гиперпараметров. 
     <space></space>
     <img-center>
-    <img src='img/fit_hyper_time.png'>
+    <img src='img/fit_hyper_time.svg'>
         </img-center>
     <h2 id='appendix'>
         Приложение. Результаты валидации и тестирования моделей
@@ -1832,7 +1832,7 @@
     <img src='img/performance_lr_df.png'>
         </img-center>
     <img-center>
-    <img src='img/performance_lr.png'>
+    <img src='img/performance_lr.svg'>
         </img-center>
     <h4>
         <i>Random Forest</i>
@@ -1842,7 +1842,7 @@
     <img src='img/performance_rf_df.png'>
         </img-center>
     <img-center>
-    <img src='img/performance_rf.png'>
+    <img src='img/performance_rf.svg'>
         </img-center>
     <h4>
         <i>XGBoost</i>
@@ -1852,7 +1852,7 @@
     <img src='img/performance_xgb_df.png'>
         </img-center>
     <img-center>
-    <img src='img/performance_xgb.png'>
+    <img src='img/performance_xgb.svg'>
         </img-center>
     <h4>
         <i>LightGBM</i>
@@ -1862,7 +1862,7 @@
     <img src='img/performance_lgb_df.png'>
         </img-center>
     <img-center>
-    <img src='img/performance_lgb.png'>
+    <img src='img/performance_lgb.svg'>
         </img-center>
 </content-container>
 </page-container>

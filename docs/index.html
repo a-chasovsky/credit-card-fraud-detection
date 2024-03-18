@@ -31,7 +31,7 @@
 <sub-container style='border-right: 1px solid #CFD7DE;'>
 <content-container style='text-align:right;'>
     <h1 id='title' style='text-align:right;'>
-       1Обнаружение мошеннических операций с кредитными картами
+       2Обнаружение мошеннических операций с кредитными картами
     </h1>
     <h5 style='text-align:right;margin-top:-0.5em;'>
        Машинное обучение, классификация
@@ -103,9 +103,12 @@
         <li>Мошеннических транзакций: 17 752 (0.84%);</li>
         <li>Число характеристик транзакций: 9.</li>
         </ul>
+<section id='dataset_description'>
+</section>
     <img
         src='img/data.png'
-        style='display:block;margin-left:-15px;margin-right:auto;border: 1px solid #CCCCCC;border-radius: 3px;'> 
+        style='display:block;margin-left:-15px;margin-right:auto;width:100%;
+               border: 1px solid #CCCCCC;border-radius: 3px;'> 
     <space></space>
     <ul>
         <li><sb>transaction_id</sb>: идентификатор транзакции;</li>
@@ -118,8 +121,6 @@
         <li><sb>tx_fraud</sb>: метка мошенничества (1 - мошенническая транзакция, 0 - подлинная транзакция);</li>
         <li><sb>tx_fraud_scenario</sb>: тип мошенничества (для построения моделей мультиклассовой классификации).</li>
         </ul>
-<section id='dataset_description'>
-</section>
     <h2 id='feature_engineering'>
         Создание дополнительных предикторов (Feature Engineering)
     </h2>
@@ -133,6 +134,8 @@
         <li>скользящее среднее числа транзакций по каждому терминалу (размер окна: 1,7,30 дней);</li>
         <li>скользящее среднее числа мошеннических операций по каждому терминалу (размер окна: 1,7,30 дней).</li>
         </ul>
+<section id='feature_engineering'>
+</section>
         Итоговый датасет содержит 15 предикторов и 1 целевую переменную - метку мошенничества.
     <h2 id='ml_lgorithms'>
         Используемые ML-алгоритмы
@@ -143,7 +146,7 @@
         <li><i>XGBoost (boosting):</i> самый эффективный с точки зрения прогнозов, но сложен для интерпретации и в подборе гиперпараметров;</li>
         <li><i>LightGBM (boosting):</i> работает быстрее, чем XGBoost, но эффективность ниже.</li>
         </ul>
-<section id='feature_engineering'>
+<section id='ml_lgorithms'>
 </section>
     <h2 id='cross_val_specifics'>
         Особенности работы с последовательностью транзакций и временными рядами
@@ -154,8 +157,6 @@
     Банковские карты, определенные в период обучения и период задержки как мошеннические, <sb>удаляются</sb> из тестового датасета.
     <space></space>
     Для валидации моделей используется предварительная валидация (<sb>prequential validation</sb>) со скользящим окном. Периоды обучающего, валидационного и тестового набора данных, а также задержки, одинаковы и принимаются равными одной неделе.
-<section id='ml_lgorithms'>
-</section>
     <space></space>
     <img src='img/prequential_validation.png' style='width:550px;display:block;margin-left:auto;margin-right:auto'>
 <section id='cross_val_specifics'>
@@ -171,6 +172,8 @@
         <li><sb>Average Precision</sb> (площадь под кривой Precision-Recall) - так же хорошо известная метрика.  
           Здесь используется как бенчмарк для выбора оптимальной модели - компромисс между AUC ROC и Card Precision.</li>
         </ul>
+<section id='metrics'>
+</section>
     <h2 id='models_base'>
         Результаты базовых моделей
     </h2>
@@ -182,16 +185,16 @@
         <li>XGBoost (n_estimators=150, max_depth=3, learning_rate=0.1);</li>
         <li>LightGBM (n_estimators=150, max_depth=3, learning_rate=0.1).</li>
         </ul>
-<section id='metrics'>
-</section>
     <space></space>
     <img-center>
-    <img src='img/performance_metrics.png' style='display:block;margin-left:-5px;margin-right:auto;'>
+    <img 
+        src='img/performance_metrics.png' 
+        style='display:block;margin-left:-5px;margin-right:auto;width:100%;'>
         </img-center>
-    <space></space>
-    Логистическая регрессия эффективно сработала с точки зрения AUC ROC, но уступает ансамблевым алгоритмам по другим метрикам. По совокупности XGBoost выглядит наиболее предпочтительным. 
 <section id='models_base'>
 </section>
+    <space></space>
+    Логистическая регрессия эффективно сработала с точки зрения AUC ROC, но уступает ансамблевым алгоритмам по другим метрикам. По совокупности XGBoost выглядит наиболее предпочтительным. 
     <space></space>
     В пункте 8 описаны метрики, оценивающие модель в контексте количества выявленных мошеннических <sb>транзакций</sb>. В пункте 9 исследуется метрика, ориентированная на охват как можно бóльшего числа <sb>банковских карт</sb> используемых мошенниками.
     <h2 id='metrics_transactions'>
@@ -497,7 +500,7 @@ let mybutton = document.getElementById('toTocBtn');
     // When the user scrolls down 300px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+  if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
     mybutton.style.display = "block";
   } else {
     mybutton.style.display = "none";

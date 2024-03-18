@@ -97,16 +97,19 @@ main-container > nav {
 }
 .toc ol {
     display: block;
-    list-style: round;
+    list-style: none;
+    list-style-type: disc;
     padding: 0 0 0 2em;
 }
 .toc ul {
     list-style: none;
+    list-style-type: disc;
     padding: 0 0 0 2em;
     color: #606060;
 }
 .toc li {
     text-align: left;
+    padding: 0 0 0 0.5em;
 }
 .toc ol li::marker {
     /* content: '✝ '; */
@@ -123,7 +126,8 @@ main-container > nav {
 .toc li.active > a {
     font-weight:600;
     color: #1E5FA5;
-    padding-right: 1.5em;
+    /* padding-right: 1.5em; */
+    padding: 0 1.5em 0 0;
     /* white-space: nowrap; */
 }
 ul {

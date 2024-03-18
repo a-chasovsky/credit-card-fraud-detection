@@ -103,7 +103,7 @@ main-container > nav {
 .toc ul {
     list-style: none;
     margin-top: 0;
-    padding-left: 2.5em;
+    padding-left: 2em;
     color: #606060;
 }
 .toc li {

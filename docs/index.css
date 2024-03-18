@@ -103,7 +103,7 @@ main-container > nav {
 }
 .toc ul {
     list-style: none;
-    list-style-type: disc;
+    /* list-style-type: disc; */
     padding: 0 0 0 2em;
     color: #606060;
 }

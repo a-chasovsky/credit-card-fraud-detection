@@ -100,17 +100,13 @@ main-container > nav {
     padding-top: 0.5em;
     padding-left: 2em;
 }
-.toc ol li::marker {
-    content: url(img/star.svg);
-    font-size: 0.1em;
-}
 .toc ul {
     list-style: none;
     margin-top: 0;
     padding-left: 2em;
     color: #606060;
 }
-.toc ul li::marker {
+.toc li::marker {
     content: url(img/star.svg);
     font-size: 0.1em;
 }

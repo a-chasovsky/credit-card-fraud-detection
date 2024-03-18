@@ -104,7 +104,6 @@ main-container > nav {
     list-style: none;
     margin-top: 0;
     padding-left: 2.5em;
-    padding-left: 0;
     color: #606060;
 }
 .toc li {

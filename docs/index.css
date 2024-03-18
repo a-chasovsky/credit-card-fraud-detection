@@ -109,14 +109,14 @@ main-container > nav {
 }
 .toc li {
     text-align: left;
-    padding: 0 0 0 0.5em;
+    padding: 0;
 }
-.toc ol li::marker {
-    /* content: '✝ '; */
-    color: #404040;
+/* .toc ol li::marker {
+    content: '✝ ';
+    color: #505050;
     font-size: 1em;
-    vertical-align: 0em;
-}
+    vertical-align: -0.5em;
+} */
 /* .toc ul li::marker {
     content: '✝ ';
     color: #404040;

@@ -107,13 +107,11 @@ main-container > nav {
     color: #606060;
 }
 .toc li::marker {
-    content: url(img/star.svg);
-    /* font-size: 0.1em; */
-    height: 1em;
-    width: 1em;
+    font-size: 1em;
 }
 .toc li {
     text-align: left;
+    list-style-image: url(img/star.svg);
 }
 .toc li.active > a {
     font-weight:600;

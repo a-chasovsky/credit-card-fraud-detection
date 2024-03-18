@@ -80,7 +80,7 @@ main-container > nav {
 }
 .toc {
     width: 100%;
-    margin: 0.3em 0 0 0;
+    margin-top: 0.3em;
     height: 50em;
     font-size: 0.85em;
     color: #606060;
@@ -97,12 +97,15 @@ main-container > nav {
 .toc ol {
     display: block;
     list-style: none;
-    padding: 0.5em 0 0 2em;
+    padding-top: 0.5em;
+    padding-left: 2em;
 }
 .toc ul {
     list-style: none;
+    margin-top: 0;
     padding-left: 2.5em;
     padding-left: 0;
+    color: #606060;
 }
 .toc li {
     text-align: left;

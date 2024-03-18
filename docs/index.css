@@ -109,10 +109,6 @@ main-container > nav {
 .toc li {
     text-align: left;
 }
-.list-image {
-  width: 1em;  /* Выбираем подходящий для нас размер */
-  height: 1em;
-}
 .toc li.active > a {
     font-weight:600;
     color: #1E5FA5;

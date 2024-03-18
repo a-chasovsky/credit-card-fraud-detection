@@ -81,7 +81,7 @@ main-container > nav {
 .toc {
     width: 100%;
     margin: 0.3em 0 0 0;
-    height: 70em;
+    height: 60em;
     font-size: 0.85em;
     color: #606060;
     border:1px solid red;
@@ -98,14 +98,19 @@ main-container > nav {
 .toc ol {
     display: block;
     list-style: none;
-    padding: 0.5em 0 0 2em;
+    padding: 0 0 0 2em;
 }
 .toc ul {
     list-style: none;
-    padding: 0 0 0 2.5em;
+    padding: 0 0 0 2em;
 }
 .toc li {
     text-align: left;
+.toc li::marker {
+  /* content: '✝ '; */
+    color: #404040;
+    font-size: 0.7em;
+}
 }
 .toc li.active > a {
     font-weight:600;

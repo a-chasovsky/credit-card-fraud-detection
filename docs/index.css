@@ -107,16 +107,16 @@ main-container > nav {
 }
 .toc li {
     text-align: left;
-.toc ol li::marker {
+.toc li::marker {
     content: '✝ ';
     color: #404040;
     font-size: 0.7em;
 }
-.toc ol ul li::marker {
+/* .toc ul li::marker {
     content: '✝ ';
     color: #404040;
     font-size: 0.4em;
-}
+} */
 }
 .toc li.active > a {
     font-weight:600;

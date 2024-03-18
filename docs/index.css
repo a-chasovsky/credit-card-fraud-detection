@@ -110,8 +110,8 @@ main-container > nav {
     text-align: left;
 }
 .list-image {
-  width: 0.7em;  /* Выбираем подходящий для нас размер */
-  height: 0.7em;
+  width: 1em;  /* Выбираем подходящий для нас размер */
+  height: 1em;
 }
 .toc li.active > a {
     font-weight:600;

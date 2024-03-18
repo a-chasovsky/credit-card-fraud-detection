@@ -102,7 +102,7 @@ main-container > nav {
 }
 .toc ol li::marker {
     content: url(img/star.svg);
-    font-size: 1em;
+    font-size: 0.1em;
 }
 .toc ul {
     list-style: none;
@@ -112,7 +112,7 @@ main-container > nav {
 }
 .toc ul li::marker {
     content: url(img/star.svg);
-    font-size: 1em;
+    font-size: 0.1em;
 }
 .toc li {
     text-align: left;

@@ -111,7 +111,6 @@ main-container > nav {
 }
 .toc li {
     text-align: left;
-    vertical-align: -10em;
     padding-left: -0.5em;
 }
 .toc li::marker {
@@ -127,6 +126,9 @@ main-container > nav {
 }
 .toc li.active::marker {
     color: #1E5FA5;
+}
+.toc li::before {
+    vertical-align: -10em;
 }
 ul {
     list-style-type: disc;

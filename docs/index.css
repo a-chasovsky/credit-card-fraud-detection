@@ -107,7 +107,7 @@ main-container > nav {
     color: #606060;
 }
 .toc li::marker {
-    font-size: 1em;
+    font-size: 0.1em;
 }
 .toc li {
     text-align: left;

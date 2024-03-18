@@ -81,7 +81,7 @@ main-container > nav {
 .toc {
     width: 100%;
     margin: 0.3em 0 0 0;
-    height: 60em;
+    height: 50em;
     font-size: 0.85em;
     color: #606060;
     border:1px solid red;
@@ -102,7 +102,7 @@ main-container > nav {
 }
 .toc ul {
     list-style: none;
-    padding: -0.5em 0 0 2em;
+    padding: -1em 0 0 2em;
     color: #606060;
 }
 .toc li {
@@ -110,6 +110,7 @@ main-container > nav {
 }
 .toc li::marker {
     /* content: '✝ '; */
+    list-style-type: circle;
     color: #404040;
     font-size: 1em;
     vertical-align:-1.3em;

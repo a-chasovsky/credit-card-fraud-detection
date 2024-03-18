@@ -102,12 +102,13 @@ main-container > nav {
 }
 .toc ul {
     list-style: none;
-    padding: 0 0 0 2em;
+    padding: -0.5em 0 0 2em;
     color: #606060;
 }
 .toc li {
     text-align: left;
-main-container > nav > ol ::marker {
+}
+.toc li::marker {
     content: '✝ ';
     color: #404040;
     font-size: 0.7em;

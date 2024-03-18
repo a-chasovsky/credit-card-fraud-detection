@@ -31,7 +31,7 @@
 <sub-container style='border-right: 1px solid #CFD7DE;'>
 <content-container style='text-align:right;'>
     <h1 id='title' style='text-align:right;'>
-       3Обнаружение мошеннических операций с кредитными картами
+       4Обнаружение мошеннических операций с кредитными картами
     </h1>
     <h5 style='text-align:right;margin-top:-0.5em;'>
        Машинное обучение, классификация
@@ -208,7 +208,9 @@
     <space></space>
     Построим ROC-кривую для оценки эффективности алгоритмов (используются суточные данные).
     <space></space>
+    <img-center>
     <img src='img/roc_curve.png'>
+        </img-center>
     <space></space>
     Logistic Regression и Random Forest работают чуть лучше. Если оценивать исключительно по AUC ROC, то эти алгоритмы - предпочтительный выбор. Начиная со значения False Positive Rate, равного примерно 0.3, заметен провал XGBoost по эффективности.
 <section id='metrics_transactions'>
@@ -227,7 +229,9 @@
     <space></space>
     Построим кривую Precision-Recall. Оптимальные соотношения Precision и Recall здесь рассчитаны через среднее гармоническое (F1-мера).
     <space></space>
+    <img-center>
     <img src='img/pr_curve.png'>
+        </img-center>
     <space></space>
     Logistic Regression и LightGBM работают чуть хуже. Random Forest и XGBoost показывают одинаковые результаты в оптимальной точке. Кривая XGBoost выглядит интереснее, покрывает бóльшую площадь, а значит более эффективна и лучше настраивается с помощью подбора порогового значения.
 <section id='precision_recall'>
@@ -404,7 +408,9 @@
     <space></space>
     Дисперсия на примере результатов XGBoost.
     <space></space>
-    <img src='img/unbalanced_xgb.png' style='margin-left:-5px'>
+    <img-center>
+    <img src='img/unbalanced_xgb.png'>
+        </img-center>
     <space></space>
     <h2 id='time'>
         Время работы алгоритмов

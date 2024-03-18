@@ -98,15 +98,19 @@ main-container > nav {
     display: block;
     list-style: none;
     list-style-type: disc;
-    padding: 0.5em 0 0 2em;
+    padding: 0.5em 0 0 2.5em;
 }
 .toc ul {
     list-style: none;
     list-style-type: disc;
     padding: -0.5em 0 -0.5em 2em;
+    color: #606060;
 }
 .toc li {
     text-align: left;
+}
+.toc li::marker {
+    font-size: 1.2em
 }
 .toc li.active > a {
     font-weight:600;

@@ -109,11 +109,9 @@ main-container > nav {
 .toc li {
     text-align: left;
 }
-.toc li.custom-marker {
-  list-style: none;                   /* Убираем стандартные маркеры */
-  background: url('img/star.svg') no-repeat; /* Добавляем фоновое изображение */
-  background-size: 1em;         /* Задаём размер */
-  padding-left: 0;                 /* Регулируем отступ */
+.list-image {
+  width: 1em;  /* Выбираем подходящий для нас размер */
+  height: 1em;
 }
 .toc li.active > a {
     font-weight:600;

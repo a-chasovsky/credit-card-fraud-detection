@@ -111,7 +111,7 @@ main-container > nav {
 }
 .toc li {
     text-align: left;
-    vertical-align: middle;
+    vertical-align: -10em;
     padding-left: -0.5em;
 }
 .toc li::marker {

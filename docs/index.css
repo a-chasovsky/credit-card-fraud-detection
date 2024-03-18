@@ -99,20 +99,20 @@ main-container > nav {
     list-style: none;
     padding-top: 0.5em;
     padding-left: 2em;
-    list-style-image: url(img/star.svg);
 }
 .toc ol li::marker {
-    font-size: 0.1em;
+    content: url(img/star.svg);
+    font-size: 1em;
 }
 .toc ul {
     list-style: none;
     margin-top: 0;
     padding-left: 2em;
     color: #606060;
-    list-style-image: url(img/star.svg);
 }
 .toc ul li::marker {
-    font-size: 0.1em;
+    content: url(img/star.svg);
+    font-size: 1em;
 }
 .toc li {
     text-align: left;

@@ -31,7 +31,7 @@
 <sub-container style='border-right: 1px solid #CFD7DE;'>
 <content-container style='text-align:right;'>
     <h1 id='title' style='text-align:right;'>
-       Обнаружение мошеннических операций с кредитными картами
+       1Обнаружение мошеннических операций с кредитными картами
     </h1>
     <h5 style='text-align:right;margin-top:-0.5em;'>
        Машинное обучение, классификация
@@ -42,7 +42,7 @@
             <span style='display:inline-block;'>
                 <!-- &#127969; -->
                 <img
-                    src='img/credit-card.png'
+                    src='img/logo-credit-card.png'
                     style='width:1.17em;vertical-align:-0.3em;'>
                 </span>
             <span style='margin-left:0.3em;font-size:0.85em'>
@@ -91,6 +91,8 @@
         <li>комбинированный подход (undersampling + oversampling);</li>
         <li>использование весов классов (weighted models).</li>
         </ul>
+<section id='review'>
+</section>
     <h2 id='dataset_description'>
         Описание датасета
     </h2>
@@ -116,6 +118,8 @@
         <li><sb>tx_fraud</sb>: метка мошенничества (1 - мошенническая транзакция, 0 - подлинная транзакция);</li>
         <li><sb>tx_fraud_scenario</sb>: тип мошенничества (для построения моделей мультиклассовой классификации).</li>
         </ul>
+<section id='dataset_description'>
+</section>
     <h2 id='feature_engineering'>
         Создание дополнительных предикторов (Feature Engineering)
     </h2>
@@ -139,6 +143,8 @@
         <li><i>XGBoost (boosting):</i> самый эффективный с точки зрения прогнозов, но сложен для интерпретации и в подборе гиперпараметров;</li>
         <li><i>LightGBM (boosting):</i> работает быстрее, чем XGBoost, но эффективность ниже.</li>
         </ul>
+<section id='feature_engineering'>
+</section>
     <h2 id='cross_val_specifics'>
         Особенности работы с последовательностью транзакций и временными рядами
     </h2>
@@ -148,8 +154,12 @@
     Банковские карты, определенные в период обучения и период задержки как мошеннические, <sb>удаляются</sb> из тестового датасета.
     <space></space>
     Для валидации моделей используется предварительная валидация (<sb>prequential validation</sb>) со скользящим окном. Периоды обучающего, валидационного и тестового набора данных, а также задержки, одинаковы и принимаются равными одной неделе.
+<section id='ml_lgorithms'>
+</section>
     <space></space>
     <img src='img/prequential_validation.png' style='width:550px;display:block;margin-left:auto;margin-right:auto'>
+<section id='cross_val_specifics'>
+</section>
     <h2 id='metrics'>
         Метрики для оценки эффективности моделей
     </h2>
@@ -172,12 +182,16 @@
         <li>XGBoost (n_estimators=150, max_depth=3, learning_rate=0.1);</li>
         <li>LightGBM (n_estimators=150, max_depth=3, learning_rate=0.1).</li>
         </ul>
+<section id='metrics'>
+</section>
     <space></space>
     <img-center>
     <img src='img/performance_metrics.png' style='display:block;margin-left:-5px;margin-right:auto;'>
         </img-center>
     <space></space>
     Логистическая регрессия эффективно сработала с точки зрения AUC ROC, но уступает ансамблевым алгоритмам по другим метрикам. По совокупности XGBoost выглядит наиболее предпочтительным. 
+<section id='models_base'>
+</section>
     <space></space>
     В пункте 8 описаны метрики, оценивающие модель в контексте количества выявленных мошеннических <sb>транзакций</sb>. В пункте 9 исследуется метрика, ориентированная на охват как можно бóльшего числа <sb>банковских карт</sb> используемых мошенниками.
     <h2 id='metrics_transactions'>
@@ -194,6 +208,10 @@
     <img src='img/roc_curve.png'>
     <space></space>
     Logistic Regression и Random Forest работают чуть лучше. Если оценивать исключительно по AUC ROC, то эти алгоритмы - предпочтительный выбор. Начиная со значения False Positive Rate, равного примерно 0.3, заметен провал XGBoost по эффективности.
+<section id='metrics_transactions'>
+</section>
+<section id='auc_roc'>
+</section>
     <space></space>
     Площадь под кривой ROC (AUC) - одна из наиболее популярных метрик для оценки моделей машинного обучения. В то же время она плохо подходит для оценки моделей, созданных для выявления мошеннических операций с банковскими картами.
     <space></space>
@@ -208,7 +226,9 @@
     <space></space>
     <img src='img/pr_curve.png'>
     <space></space>
-    Logistic Regression и LightGBM работают чуть хуже. Random Forest и XGBoost показывают одинаковые результаты в оптимальной точке. Кривая XGBoost выглядит интереснее, покрывает бóльшую площадь, а значит более эффективна и лучше настраивается с помощью подбора порогового значения. 
+    Logistic Regression и LightGBM работают чуть хуже. Random Forest и XGBoost показывают одинаковые результаты в оптимальной точке. Кривая XGBoost выглядит интереснее, покрывает бóльшую площадь, а значит более эффективна и лучше настраивается с помощью подбора порогового значения.
+<section id='precision_recall'>
+</section>
     <space></space>
     На примере XGBoost изучим воздействие значения порогового коэффициента на число выявляемых мошеннических транзакций.
     <h3 id='precision_recall_tradeoff'>
@@ -232,6 +252,7 @@
         <li>9 легальных транзакций классифицировано как мошеннические;</li>
         <li>154 мошенническим транзакциям присвоен статус легальных.</li>
         </ul>
+<section id='precision_recall_tradeoff'>
     Алгоритм <sb>очень точно</sb> классифицирует транзакции. Если транзакции присвоена метка "мошенничество", то в 96% ручная обработка транзакции это подтверждает.
     <space></space>
     Соотношение точности (<sb>Precision</sb>, 96%) и охвата (<sb>Recall</sb>, 60%) можно варьировать, изменяя пороговое значение оценок алгоритма. Увеличение охвата модели (то есть способность замечать больше мошеннических транзакций) приводит к уменьшению точности.
@@ -263,6 +284,7 @@
         <li>приведет к увеличению ложных срабатываний на 2 транзакции (ось X).</li>
         </ul>
     В интервале, отмеченном темно-серой областью, соотношение <i>1 к 4</i>:
+</section>
     <ul>
         <li>уменьшение количества пропущенных мошенничеств на 1 транзакцию (ось Y);</li>
         <li>приведет к увеличению ложных срабатываний на 4 транзакции (ось X).</li>
@@ -293,12 +315,15 @@
         Пример на суточных данных
         </h4>
     Всего транзакций: 8267.<br>
-    Из них мошеннических: 54 (0.65%).  
+    Из них мошеннических: 54 (0.65%).
+<section id='metrics_cards'>
+</section>
     <space></space>
     Всего карт: 3203 (в среднем 2.5 транзакции на карту).<br>
     Из них мошеннических: 51 (1.6%).
     <space></space>
     Параметр <i>k</i> принимается равным 100.
+<section id='card_precision_top_k'>
     <space></space>
     Показатели алгоритма XGBoost:
     <ul>
@@ -314,6 +339,7 @@
     Точность алгоритма - 100%. Все карты, которым модель присвоила метку "мошенничество", действительно оказались мошенническими. Это полезная информация для сотрудников, отвечающих за проверку подозрительных транзакций. Карты и транзакции, отмеченные моделью как мошеннические, должны проверяться в первую очередь.
     <space></space>
     Метрика CardPrecision@100 равна 30 / 100 = 0.300. Максимальное значение метрики в данном случае - это число истинно мошеннических карт, деленное на <i>k</i>: 51 / 100 = 0.510. Идеальная модель поместила бы 51 карту в топ-100 наиболее подозрительных.
+</section>
     <h4>
         Алгоритм расчета Card Precision top-k
         </h4>
@@ -347,6 +373,7 @@
     AUC ROC каждой из исследуемых моделей можно улучшить с помощью техник балансировки.  
     <space></space>
     Для Logistic Regression и Random Forest наиболее эффективен комбинированный подход. XGBoost немного улучшается после присваивания веса каждому классу. LightGBM лучше работает после удаления мажоритарных классов, но тем не менее не достигает лучших показателей остальных моделей.
+<section id='unbalanced_techniques'>
     <space></space>
     <img src='img/unbalanced_roc_auc.png' style='margin-left:10px'>
     <h4>
@@ -369,7 +396,8 @@
         Вывод
         </h4>
     <space></space>
-    Можно сказать, что в целом техники работы с несбалансированными датасетами не дают заметного прироста в результатах, а в контексте Average Precision и Card Precision могут заметно уменьшить эффективность лучших моделей. Как было отмечено выше, числа симуляций (N: 4) недостаточно для однозначного вывода.
+    Можно сказать, что в целом техники работы с несбалансированными датасетами не дают заметного прироста в результатах, а в контексте Average Precision и Card Precision могут заметно уменьшить эффективность лучших моделей.
+</section>
     <space></space>
     Дисперсия на примере результатов XGBoost.
     <space></space>
@@ -386,6 +414,8 @@
     <img src='img/score_time.png'>
     <space></space>
     LightGBM и Logistic Regression - явно лидируют по скорости обучения и поиска гиперпараметров. 
+<section id='time'>
+</section>
     <space></space>
     <img src='img/fit_hyper_time.png'>
     <h2 id='appendix'>
@@ -399,6 +429,7 @@
         </h4>
     <img src='img/performance_lr_df.png'>
     <img src='img/performance_lr.png' style='display:block;margin-left:-15px;margin-right:auto;'>
+<section id='appendix'>
     <h4>
         <i>Random Forest</i>
         </h4>
@@ -412,6 +443,7 @@
     <h4>
         <i>LightGBM</i>
         </h4>
+</section>
     <img src='img/performance_lgb_df.png'>
     <img src='img/performance_lgb.png' style='display:block;margin-left:-15px;margin-right:auto;'>
 </content-container>

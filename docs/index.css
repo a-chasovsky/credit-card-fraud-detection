@@ -106,13 +106,14 @@ main-container > nav {
     padding-left: 2em;
     color: #606060;
 }
-.toc ol li::marker {
-    /* font-size: 1em; */
-    /* color: red; */
-}
 .toc li {
     text-align: left;
-    list-style-image: url(<svg src='img/star.svg' viewBox="0 2 2 2"><svg);
+}
+.toc li.custom-marker {
+  list-style: none;                   /* Убираем стандартные маркеры */
+  background: url('img/star.svg') no-repeat; /* Добавляем фоновое изображение */
+  background-size: 1em;         /* Задаём размер */
+  padding-left: 0;                 /* Регулируем отступ */
 }
 .toc li.active > a {
     font-weight:600;

@@ -140,6 +140,11 @@ space {
     margin-top: 0.8em;
     content: ' '
 }
+space0 {
+    display: block;
+    margin-top: 0.5em;
+    content: ' '
+}
 space2 {
     display: block;
     margin-top: 1.2em;

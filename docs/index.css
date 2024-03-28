@@ -11,12 +11,12 @@ h1 {
     line-height: 1.25;
     margin-top: 0.8em;
     }
-main-container > h2 {
+h2 {
     color: #303030;
     font-size: 1.3em;
     font-weight: 600;
     line-height: 1.5em;
-    margin-bottom: -10em;
+    margin-bottom: -10em !important;
     scroll-margin-top: 0.8em;
 }
 h3 {

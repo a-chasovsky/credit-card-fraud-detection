@@ -91,24 +91,21 @@
         <li>комбинированный подход (undersampling + oversampling);</li>
         <li>использование весов классов (weighted models).</li>
         </ul>
+<section id='review'></section>
     <h2 id='dataset_description'>
         Описание датасета
     </h2>
     <space></space>
     Данные сгенерированы по методике, описанной в совместной работе исследователей из университетов Брюсселя и Люксембурга, а также команды машинного обучения компании Worldline Labs. Датасет состоит из последовательности банковских транзакций:
-<section id='review'>
-</section>
     <ul>
         <li>Всего транзакций: 2 107 260;</li>
         <li>Мошеннических транзакций: 17 752 (0.84%);</li>
         <li>Число характеристик транзакций: 9.</li>
         </ul>
-<section id='dataset_description'>
-</section>
     <img
         src='img/data.png'
-        style='display:block;width:100%;
-               border: 1px solid #CCCCCC;border-radius: 3px;'> 
+        style='display:block;width:100%;border: 1px solid #CCCCCC;border-radius: 3px;'> 
+<section id='dataset_description'></section>
     <space></space>
     <ul>
         <li><sb>transaction_id</sb>: идентификатор транзакции;</li>
@@ -137,17 +134,6 @@
 <section id='feature_engineering'>
 </section>
         Итоговый датасет содержит 15 предикторов и 1 целевую переменную - метку мошенничества.
-    <h2 id='ml_lgorithms'>
-        Используемые ML-алгоритмы
-    </h2>
-    <ul>
-        <li><i>Logistic Regression (linear):</i> самый простой и легко интерпретируемый алгоритм;</li>
-        <li><i>Random Forest (bagging):</i> сложнее для интерпретации, чем регрессия, но прогнозы точнее;</li>
-        <li><i>XGBoost (boosting):</i> самый эффективный с точки зрения прогнозов, но сложен для интерпретации и в подборе гиперпараметров;</li>
-        <li><i>LightGBM (boosting):</i> работает быстрее, чем XGBoost, но эффективность ниже.</li>
-        </ul>
-<section id='ml_lgorithms'>
-</section>
     <h2 id='cross_val_specifics'>
         Особенности работы транзакциями и временными рядами
     </h2>
@@ -167,7 +153,16 @@
         Результаты базовых моделей
         </h2>
         <h4>
-            Метрики эффективности моделей
+        Используемые ML-алгоритмы
+            </h4>
+        <ul>
+            <li><i>Logistic Regression (linear):</i> самый простой и легко интерпретируемый алгоритм;</li>
+            <li><i>Random Forest (bagging):</i> сложнее для интерпретации, чем регрессия, но прогнозы точнее;</li>
+            <li><i>XGBoost (boosting):</i> самый эффективный с точки зрения прогнозов, но сложен для интерпретации и в подборе гиперпараметров;</li>
+            <li><i>LightGBM (boosting):</i> работает быстрее, чем XGBoost, но эффективность ниже.</li>
+            </ul>
+        <h4>
+            Метрики эффективности
             </h4>
         <ul>   
             <li><sb>AUC ROC</sb> (площадь под кривой ROC) - классическая метрика оценки эффективности работы алгоритмов машинного обучения.
@@ -177,6 +172,9 @@
             <li><sb>Average Precision</sb> (площадь под кривой Precision-Recall) - так же хорошо известная метрика.  
               Здесь используется как бенчмарк для выбора оптимальной модели - компромисс между AUC ROC и Card Precision.</li>
             </ul>
+        <h4>
+            Результаты
+            </h4>
     <space></space>
     Модели и гиперпараметры, наиболее эффективные с точки зрения Average Precision:
     <ul>
@@ -509,7 +507,7 @@
     <li><a onclick="scrollToID('review')" id='#review'>Обзор проекта</a></li>
     <li><a onclick="scrollToID('dataset_description')" id='#dataset_description'>Описание датасета</a></li>
     <li><a onclick="scrollToID('feature_engineering')" id='#feature_engineering'>Создание дополнительных предикторов</a></li>
-    <li><a onclick="scrollToID('ml_lgorithms')" id='#ml_lgorithms'>Используемые ML-алгоритмы</a></li>
+    <!-- <li><a onclick="scrollToID('ml_lgorithms')" id='#ml_lgorithms'>Используемые ML-алгоритмы</a></li> -->
     <li><a onclick="scrollToID('cross_val_specifics')" id='#cross_val_specifics'>Особенности работы с транзакциями</a></li>
     <!-- <li><a onclick="scrollToID('metrics')" id='#metrics'>Метрики эффективности моделей</a></li> -->
     <li><a onclick="scrollToID('models_base')" id='#models_base'>Результаты базовых моделей</a></li>

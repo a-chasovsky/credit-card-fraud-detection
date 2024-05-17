@@ -101,7 +101,6 @@ main-container > nav {
 }
 .toc ul {
     list-style: none;
-    line-height: 1em;
     padding-left: 2.5em;
     padding-left: 0;
 }
@@ -110,7 +109,7 @@ main-container > nav {
     border-left: 1px solid #CFD7DE;
     padding-left: 1em;
     margin-left: -0.8em;
-    line-height: 1.8em;
+    line-height: 1.5em;
 }
 .toc li.active > a {
     font-weight:500;

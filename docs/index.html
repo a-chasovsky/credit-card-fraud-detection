@@ -163,22 +163,20 @@
         </img-center>
 <section id='cross_val_specifics'>
 </section>
-    <h2 id='metrics'>
-        Метрики для оценки эффективности моделей
-    </h2>
-    <ul>   
-        <li><sb>AUC ROC</sb> (площадь под кривой ROC) - классическая метрика оценки эффективности работы алгоритмов машинного обучения.
-          Хорошо изучена и часто применяется в разных сегментах противодействия мошенничеству.</li>
-        <li><sb>Card Precision Top-k</sb> - не так широко представлена, как AUC ROC, но обладает большим потенциалом.  
-          Учитывает специфику работы с транзакциями в системе выявления и верификации мошеннических операций финансовых организаций.</li>
-        <li><sb>Average Precision</sb> (площадь под кривой Precision-Recall) - так же хорошо известная метрика.  
-          Здесь используется как бенчмарк для выбора оптимальной модели - компромисс между AUC ROC и Card Precision.</li>
-        </ul>
-<section id='metrics'>
-</section>
     <h2 id='models_base'>
         Результаты базовых моделей
-    </h2>
+        </h2>
+        <h4>
+            Метрики эффективности моделей
+            </h4>
+        <ul>   
+            <li><sb>AUC ROC</sb> (площадь под кривой ROC) - классическая метрика оценки эффективности работы алгоритмов машинного обучения.
+              Хорошо изучена и часто применяется в разных сегментах противодействия мошенничеству.</li>
+            <li><sb>Card Precision Top-k</sb> - не так широко представлена, как AUC ROC, но обладает большим потенциалом.  
+              Учитывает специфику работы с транзакциями в системе выявления и верификации мошеннических операций финансовых организаций.</li>
+            <li><sb>Average Precision</sb> (площадь под кривой Precision-Recall) - так же хорошо известная метрика.  
+              Здесь используется как бенчмарк для выбора оптимальной модели - компромисс между AUC ROC и Card Precision.</li>
+            </ul>
     <space></space>
     Модели и гиперпараметры, наиболее эффективные с точки зрения Average Precision:
     <ul>
@@ -513,7 +511,7 @@
     <li><a onclick="scrollToID('feature_engineering')" id='#feature_engineering'>Создание дополнительных предикторов</a></li>
     <li><a onclick="scrollToID('ml_lgorithms')" id='#ml_lgorithms'>Используемые ML-алгоритмы</a></li>
     <li><a onclick="scrollToID('cross_val_specifics')" id='#cross_val_specifics'>Особенности работы с транзакциями</a></li>
-    <li><a onclick="scrollToID('metrics')" id='#metrics'>Метрики оценки эффективности моделей</a></li>
+    <!-- <li><a onclick="scrollToID('metrics')" id='#metrics'>Метрики эффективности моделей</a></li> -->
     <li><a onclick="scrollToID('models_base')" id='#models_base'>Результаты базовых моделей</a></li>
     <li><a onclick="scrollToID('metrics_transactions')" id='#metrics_transactions'>Метрики (транзакции)</a></li>
     <li><a onclick="scrollToID('metrics_cards')" id='#metrics_cards'>Метрики (банковские карты)</a></li>

@@ -110,7 +110,7 @@ main-container > nav {
     padding-left: 1em;
     margin-top: 1em;
     margin-left: -0.8em;
-    line-height: 1.3em;
+    line-height: 1.5em;
 }
 .toc li.active > a {
     font-weight:500;

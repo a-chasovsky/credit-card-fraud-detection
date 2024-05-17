@@ -499,19 +499,22 @@
 </sub-container>
 <!-- Right part -->
 <nav class='toc'>
-    <ol><li style='margin-bottom:0.3em;margin-left:-0.7em;color:#23272D;font-weight:500;border:none;'>
-        6Содержание</li>
+    <ol>
+        <li style='margin-bottom:0.3em;margin-left:-0.7em;color:#23272D;font-weight:500;border:none;'>
+        Содержание</li>
+    <li><a onclick="scrollToID('review')" id='#review'>Обзор проекта</a></li>
+    <li><a onclick="scrollToID('dataset_description')" id='#dataset_description'>Описание датасета</a></li>
+    <li><a onclick="scrollToID('feature_engineering')" id='#feature_engineering'>Создание дополнительных предикторов</a></li>
+    <!-- <li><a onclick="scrollToID('ml_lgorithms')" id='#ml_lgorithms'>Используемые ML-алгоритмы</a></li> -->
+    <li><a onclick="scrollToID('cross_val_specifics')" id='#cross_val_specifics'>Особенности работы с транзакциями</a></li>
+    <!-- <li><a onclick="scrollToID('metrics')" id='#metrics'>Метрики эффективности моделей</a></li> -->
+    <li><a onclick="scrollToID('models_base')" id='#models_base'>Результаты базовых моделей</a></li>
+    <li><a onclick="scrollToID('metrics_transactions')" id='#metrics_transactions'>Метрики по транзакциям</a></li>
+    <li><a onclick="scrollToID('metrics_cards')" id='#metrics_cards'>Метрики по банковским картам</a></li>
+    <li><a onclick="scrollToID('unbalanced_techniques')" id='#unbalanced_techniques'>Техники преобразования несбаланси- <br> рованных датасетов</a></li>
+    <li><a onclick="scrollToID('time')" id='#time'>Время работы алгоритмов</a></li>
+    <li><a onclick="scrollToID('appendix')" id='#appendix'>Приложение. Результаты валидации и тестирования моделей</a></li>
         </ol>
-    <ol><li><a onclick="scrollToID('review')" id='#review'>Обзор проекта</a></li></ol>
-    <ol><li><a onclick="scrollToID('dataset_description')" id='#dataset_description'>Описание датасета</a></li></ol>
-    <ol><li><a onclick="scrollToID('feature_engineering')" id='#feature_engineering'>Создание дополнительных предикторов</a></li></ol>
-    <ol><li><a onclick="scrollToID('cross_val_specifics')" id='#cross_val_specifics'>Особенности работы с транзакциями</a></li></ol>
-    <ol><li><a onclick="scrollToID('models_base')" id='#models_base'>Результаты базовых моделей</a></li></ol>
-    <ol><li><a onclick="scrollToID('metrics_transactions')" id='#metrics_transactions'>Метрики по транзакциям</a></li></ol>
-    <ol><li><a onclick="scrollToID('metrics_cards')" id='#metrics_cards'>Метрики по банковским картам</a></li></ol>
-    <ol><li><a onclick="scrollToID('unbalanced_techniques')" id='#unbalanced_techniques'>Техники преобразования несбалансиро- <br> ванных датасетов</a></li></ol>
-    <ol><li><a onclick="scrollToID('time')" id='#time'>Время работы алгоритмов</a></li></ol>
-    <ol><li><a onclick="scrollToID('appendix')" id='#appendix'>Приложение. Результаты валидации и тестирования моделей</a></li></ol>
         <button
         id="toTocBtn"
         style='font-size:1em;bottom:2em;margin:0 0 0 2.5em;padding:1.2em 1.4em 1.3em 1.5em;border-radius:0.4em;'
@@ -519,7 +522,6 @@
         Наверх
             </button>
 </nav>
-
 
 
 

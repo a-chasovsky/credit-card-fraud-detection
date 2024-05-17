@@ -112,8 +112,8 @@ main-container > nav {
     line-height: 1.8em;
 }
 .toc li.active > a {
-    /* font-weight:600; */
-    color: #1E5FA5;
+    font-weight:500;
+    /* color: #1E5FA5; */
     padding-right: 0em;
     /* border-left: 2px solid #315E8E; */
     /* white-space: nowrap; */

@@ -101,6 +101,7 @@ main-container > nav {
 }
 .toc ul {
     list-style: none;
+    line-height: 1em;
     padding-left: 2.5em;
     padding-left: 0;
 }

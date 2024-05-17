@@ -108,7 +108,7 @@ main-container > nav {
     text-align: left;
     border-left: 1px solid #CFD7DE;
     padding-left: 1em;
-    margin-top: 1em;
+    margin-top: 0em;
     margin-left: -0.8em;
     line-height: 1.5em;
 }

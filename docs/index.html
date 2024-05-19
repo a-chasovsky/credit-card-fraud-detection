@@ -7,10 +7,6 @@
     <title>Обнаружение мошеннических операций с кредитными картами</title>
     <link rel="stylesheet" href="index.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
-    <!-- <script id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-        </script> -->
-
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
@@ -118,6 +114,7 @@
         <li><sb>tx_fraud</sb>: метка мошенничества (1 - мошенническая транзакция, 0 - подлинная транзакция);</li>
         <li><sb>tx_fraud_scenario</sb>: тип мошенничества (для построения моделей мультиклассовой классификации).</li>
         </ul>
+<section id='feature_engineering'>
     <h2 id='feature_engineering'>
         Создание дополнительных предикторов (Feature Engineering)
     </h2>
@@ -131,8 +128,8 @@
         <li>скользящее среднее числа транзакций по каждому терминалу (размер окна: 1, 7, 30 дней);</li>
         <li>скользящее среднее числа мошеннических операций по каждому терминалу (размер окна: 1, 7, 30 дней).</li>
         </ul>
-<section id='feature_engineering'></section>
         Итоговый датасет содержит 15 предикторов и 1 целевую переменную - метку мошенничества.
+</section><section id='cross_val_specifics'>
     <h2 id='cross_val_specifics'>
         Особенности работы транзакциями и временными рядами
     </h2>
@@ -146,7 +143,7 @@
     <img-center>
     <img src='img/cv_schema.svg'>
         </img-center>
-<section id='cross_val_specifics'></section>
+</section><section id='models_base'>
     <h2 id='models_base'>
         Результаты базовых моделей
         </h2>
@@ -170,7 +167,6 @@
             <li><sb>Average Precision</sb> (площадь под кривой Precision-Recall) - так же хорошо известная метрика.  
               Здесь используется как бенчмарк для выбора оптимальной модели - компромисс между AUC ROC и Card Precision.</li>
             </ul>
-<section id='models_base'>
         <h4>
             Результаты
             </h4>
@@ -182,7 +178,6 @@
         <li>XGBoost (n_estimators=150, max_depth=3, learning_rate=0.1);</li>
         <li>LightGBM (n_estimators=150, max_depth=3, learning_rate=0.1).</li>
         </ul>
-</section>
     <space></space>
     <img-center>
     <img src='img/performance_metrics.png'>
@@ -191,6 +186,7 @@
     Логистическая регрессия эффективно сработала с точки зрения AUC ROC, но уступает ансамблевым алгоритмам по другим метрикам. По совокупности XGBoost выглядит наиболее предпочтительным. 
     <space></space>
     В пункте 8 описаны метрики, оценивающие модель в контексте количества выявленных мошеннических <sb>транзакций</sb>. В пункте 9 исследуется метрика, ориентированная на охват как можно бóльшего числа <sb>банковских карт</sb> используемых мошенниками.
+</section><section id='metrics_transactions'>
     <h2 id='metrics_transactions'>
         Метрики, ориентированные на транзакции
     </h2>
@@ -205,7 +201,6 @@
     <img-center>
     <img src='img/roc_curve.png'>
         </img-center>
-<section id='metrics_transactions'>
     <space></space>
     Logistic Regression и Random Forest работают чуть лучше. Если оценивать исключительно по AUC ROC, то эти алгоритмы - предпочтительный выбор. Начиная со значения False Positive Rate, равного примерно 0.3, заметен провал XGBoost по эффективности.
     <space></space>
@@ -281,7 +276,6 @@
     <img src='img/missedwrong_tradeoff_2.png'>
         </img-center>
     <space></space>
-</section>
     В интервале, отмеченном светло-серой областью, соотношение <sb>1</sb> к <sb>2</sb>:
     <ul>
         <li>уменьшение количества пропущенных мошенничеств на 1 транзакцию (ось Y);</li>
@@ -301,7 +295,8 @@
         <li>Невозможно одновременно увеличивать точность и степень охвата алгоритма;</li>
         <li>Компромисс между точностью и охватом - это компромисс между <sb>ценой</sb> упущенной мошеннической транзакции и <sb>издержками</sb> на проверку подозрительных транзакций.</li>
         </ul>
-    В зависимости от величины соответствующих затрат, выбирается оптимальное значение порогового коэффициента. 
+    В зависимости от величины соответствующих затрат, выбирается оптимальное значение порогового коэффициента.
+</section><section id='metrics_cards'>
     <h2 id='metrics_cards'>
         Метрики, ориентированные на банковские карты
     </h2>
@@ -314,7 +309,6 @@
     Модель, выбранная с помощью данной метрики, фиксирует больше разнородных транзакций. Подобная вариативность приводит к бóльшему охвату по картам. Теоретически, охват бóльшего числа карт мошенников позволяет предотвратить бóльшие потери в будущем.
     <space></space>
     Помимо этого, метрика Card Precision top-k интуитивно более понятна специалистам, которые осуществляют проверку подозрительных транзакций.
-<section id='metrics_cards'>
     <h4>
         Пример на суточных данных
         </h4>
@@ -341,7 +335,6 @@
     Точность алгоритма - 100%. Все карты, которым модель присвоила метку "мошенничество", действительно оказались мошенническими. Это полезная информация для сотрудников, отвечающих за проверку подозрительных транзакций. Карты и транзакции, отмеченные моделью как мошеннические, должны проверяться в первую очередь.
     <space></space>
     Метрика CardPrecision@100 равна 30 / 100 = 0.300. Максимальное значение метрики в данном случае - это число истинно мошеннических карт, деленное на <math><mi>k</mi></math>: 51 / 100 = 0.510. Идеальная модель поместила бы 51 карту в топ-100 наиболее подозрительных.
-</section>
     <h4>
         Алгоритм расчета Card Precision top-k
         </h4>
@@ -359,6 +352,7 @@
         </h4>
     <space></space>
     Card Precision - эффективная метрика, которая адаптирована под выявление и предупреждение мошеннических операций с кредитными картами (в отличие от классических ML-метрик).
+</section><section id='unbalanced_techniques'>
     <h2 id='unbalanced_techniques'>
         Техники преобразования несбалансированных датасетов
     </h2>
@@ -376,7 +370,6 @@
     AUC ROC каждой из исследуемых моделей можно улучшить с помощью техник балансировки.  
     <space></space>
     Для Logistic Regression и Random Forest наиболее эффективен комбинированный подход. XGBoost немного улучшается после присваивания веса каждому классу. LightGBM лучше работает после удаления мажоритарных классов, но тем не менее не достигает лучших показателей остальных моделей.
-<section id='unbalanced_techniques'>
     <space></space>
     <img-center>
     <img src='img/unbalanced_roc_auc.png'>
@@ -406,7 +399,6 @@
         </h4>
     <space></space>
     Можно сказать, что в целом техники работы с несбалансированными датасетами не дают заметного прироста в результатах, а в контексте Average Precision и Card Precision могут заметно уменьшить эффективность лучших моделей.
-</section>
     <space></space>
     Дисперсия на примере результатов XGBoost.
     <space></space>
@@ -414,6 +406,7 @@
     <img src='img/unbalanced_xgb.png'>
         </img-center>
     <space></space>
+</section><section id='time'>
     <h2 id='time'>
         Время работы алгоритмов
     </h2>
@@ -427,12 +420,11 @@
         </img-center>
     <space></space>
     LightGBM и Logistic Regression - явно лидируют по скорости обучения и поиска гиперпараметров. 
-<section id='time'>
     <space></space>
     <img-center>
     <img src='img/fit_hyper_time.png'>
         </img-center>
-</section>
+</section><section id='appendix'>
     <h2 id='appendix'>
         Приложение. Результаты валидации и тестирования моделей
     </h2>
@@ -447,7 +439,6 @@
     <img-center>
     <img src='img/performance_lr.png'>
         </img-center>
-<section id='appendix'>
     <h4>
         <i>Random Forest</i>
         </h4>
